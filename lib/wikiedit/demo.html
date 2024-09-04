@@ -1,0 +1,36 @@
+<html>
+<head>
+  <style>
+ .toolbar tr { background: ButtonFace; }
+ .toolbar .btn-, .toolbar  .btn-hover,  .toolbar .btn-active,  
+ .toolbar .btn-pressed {  background: ButtonFace; color: ButtonText;
+  border: 1px solid ButtonFace; padding: 1px;  margin: 0px; cursor: pointer; cursor: hand; }
+ .toolbar .btn- img  { width: 20px; height: 20px; }
+ .toolbar .btn-hover { border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight; }
+ .toolbar .btn-active,  
+ .toolbar .btn-pressed { border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow; }
+ .toolbar .btn-pressed { background: ButtonHighlight; }
+ .edname { background-color:#CCCCFF; font-size: 18px; padding: 0 10px; }
+ </style>
+</head>
+<script language="JavaScript" src="protoedit.js"></script>
+<script language="JavaScript" src="wikiedit2.js"></script>
+<body onload="wE = new WikiEdit(); wE.init('postText','WikiEdit','edname');">
+<form action="/editPopUp.ex" name="editForm" method="post">
+<textarea id="postText" cols="80" rows="20">
+===WikiEdit 2.0===
+
+**Main features:**
+
+  * autoindent
+  * shortcuts
+  * toolbar
+
+Supported browsers: MZ1.4+, MSIE5+
+
+(c) Roman Ivanov <thingol@mail.ru>, 2003-2004
+(c) WackoWiki Team.
+</textarea>
+<br/>
+</form>
+</body>

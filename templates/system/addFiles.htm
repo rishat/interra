@@ -1,0 +1,86 @@
+{* load lang file *}
+{config_load file="lang`$smarty.const.PLANG`.txt" section="add"}
+
+<html>
+	<head>
+		{literal}
+		<style>
+			body, td {  font-family: Tahoma; font-size: 11px; color: #000000; padding: 0; margin: 0;}
+
+			.noFiles {
+				border: 1px solid #ccc;
+				padding: 10px;
+				text-align: center;
+				background: #fff;
+			}
+
+			.noFiles ol {
+				text-align: left;
+			}
+
+			.myFile{
+				width: 100%;
+			}
+
+			form{
+				margin: 0;
+				padding: 0;
+			}
+
+			input{
+				width: 100%;
+				margin: 0;
+				padding: 1px 0px;
+				font-size: 90%;
+				font-family: verdana, sans-serif;
+			}
+		</style>
+		{/literal}
+
+		<script language="JavaScript">
+			parent.iFrameHeight('ifiles',{$frameSize});
+			var rows = {$frameSize};
+			{literal}
+			function cloneRow(tid,pos){
+                var tab   = document.getElementById(tid);
+                var root  = tab.getElementsByTagName('tr')[pos].parentNode;     //the TBODY
+                var clone = tab.getElementsByTagName('tr')[pos].cloneNode(true);//the clone of the first row	 
+                root.appendChild(clone);//appends the clone                 
+                
+                rows = rows + 1;
+                parent.iFrameHeight('ifiles',rows);
+            }
+			{/literal}
+		</script>
+		
+		<base href="{$TEMPLATE_ROOT}" />
+		<script language="JavaScript" src="scripts.js"></script>
+	</head>
+
+
+	<body>
+		<div class="noFiles">
+			{if $myFiles}
+				<ol>
+				{foreach from=$myFiles item=myFile}
+					<li><a href="{$SERVER_ROOT}entry/{$smarty.session.tempEntryID}/file/{$myFile.name|urlencode}" onClick="return parent.addImg('{$SERVER_ROOT}entry/{$smarty.session.tempEntryID}/file/{$myFile.name|urlencode}');">{$myFile.name}</a> {if $myFile.thumb}[<a href="#" onclick="return parent.addThumb('{$SERVER_ROOT}entry/{$smarty.session.tempEntryID}/file/{$myFile.name|urlencode}');">!!!</a>]{/if} <small>({$myFile.size} Kb) [ <a href="{$SERVER_ROOT}entry/{$smarty.session.tempEntryID}/file/delete/{$myFile.name|urlencode}" OnClick="return confirmLink(this,'{#youSure#}');">{#delete#}</a> ]</small></li>
+				{/foreach}
+				</ol>
+			{else}
+				{#noFiles#}
+			{/if}
+		</div>
+		
+		<form action="{$SERVER_ROOT}fileManager.php" name="addFile" id="addFile" method="POST" enctype="multipart/form-data">
+			<table width="100%" id="files">
+			    <tr>
+			        <td width="100%">			        
+			            <input type="file" name="myFile[]" style="width: 100%;" class="myFile" />
+			        </td>
+			    </tr>
+			</table>
+			<input type="button" value="+++" style="width: 40px;" onclick="cloneRow('files',0)" />
+			<input type="submit" name="submitButton" value="{#addFile#}" id="submitButton" style="height: 20px; width: 120px" />			
+		</form>
+	</body>
+</html>

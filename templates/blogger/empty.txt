@@ -1,0 +1,2 @@
+{* empty template used to cache various results *}
+{$someData}

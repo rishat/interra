@@ -1,0 +1,17 @@
+{* load lang file *}
+{config_load file="lang`$smarty.const.PLANG`.txt" section="keywords"}
+
+<div class=entry>
+	<h2>{#keywords2#}</h2>
+	{if $keywords2}
+		<ul>
+		{foreach from=$keywords2 item=keyword}
+		  <li><a href="{$SERVER_ROOT}keyword/{$keyword.link}/">{$keyword.word}</a> ({$keyword.total})</li>
+		{/foreach}
+		</ul>
+	{else}
+		<p>{#noJoy#}</p>
+	{/if}
+</div>
+
+<hr class="hide" />

@@ -1,0 +1,22 @@
+{config_load file="lang`$smarty.const.PLANG`.txt" section="comments"}
+{#hello#}{$sender},
+
+{if $admintext}{#text4#} {$sender} <{$senderMail|default:"unknown"}>, [{$smarty.server.REMOTE_ADDR}] {#text2#}{else}{#text3#}{/if}:
+
+-- {#authorsaid#} --
+
+{$comment}
+
+
+-- {if $admintext}{#someComment#}{else}{#yourComment#}{/if} --
+
+{$entry}
+
+
+
+-- {#options#} --
+
+  * {#look#} -- {$url}
+
+--
+Powered by InTerra Blog Machine V{$VERSION}

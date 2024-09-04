@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>InTerra Blog Machine Installer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=win-1251" />
+{literal}
+	<style>
+		body, td {  font-family: Tahoma; font-size: 11px; color: #000000; padding: 0; margin: 0; text-align: center;}
+		
+		#installer {
+			width: 500px;
+			margin: auto;
+		}
+
+		#install fieldset{
+			text-align: left;
+			margin: 15px 3px 5px 3px; 
+			padding: 15px;
+			color: #aa0000;
+			border: solid 1px #ccc;
+			background: #eee;
+		}
+
+		#install fieldset legend{
+			padding: 2px 15px;
+			color: #aa0000;
+			font-weight: bold;
+			border: solid 1px #ccc;
+			background: #fff;
+		}
+
+		#install fieldset input{
+			width: 100%;
+		}
+
+		#install fieldset p{
+			color: #000;
+			text-align: justify;
+		}
+
+		#errors {
+			background: #ffeeee;
+			color: #aa0000;
+			border: solid 1px #ffcccc;
+			padding: 10px;
+		}
+
+		#confirm {
+			background: #eeffee;
+			color: #00aa00;
+			border: solid 1px #ccffcc;
+			padding: 10px;
+		}
+	</style>
+	
+	<script language="JavaScript">
+	   function hitme(obj){
+	       window.location.href = '?lang='+obj.value;
+	   }
+	</script>
+{/literal}
+</head>
+
+{* load lang file *}
+{if $smarty.get.lang == 'eng'}
+{config_load file="install.en.txt"}
+{else}
+{config_load file="install.txt"}
+{/if}
+
+<body>
+<div id="installer">
+	<h2>InTerra Blog Machine</h2>
+
+	{if $errors}
+	<div id="errors">
+		<ul>
+			{if $errors[1]}<li>{#error1#}</li>{/if}
+			{if $errors[2]}<li>{#error2#}</li>{/if}
+			{if $errors[3]}<li>{#error3#}</li>{/if}
+			{if $errors[4]}<li>{#error4#}</li>{/if}
+		</ul>
+	</div>
+	{/if}
+	
+	{if $confirm}
+
+	<div id="confirm">
+		<p>{#confirm1#}</p>
+		
+		{if $confirm[1]}
+		<ul>
+			<li>{#confirm2#}</li>
+		</ul>
+		{/if}
+
+		<p>{#confirm3#}</p>
+		<p>{#confirm4#}, <a href="{$root}">{#confirm5#}</a>?</p>
+		<img src="http://www.essentialmind.com/files/image.php?system=interra" width=1 height=1 border=0>
+	</div>
+
+	{else}
+	<form name="install" id="install" action="" method="post">
+	    Language: <select onchange="hitme(this);"><option value="rus">Russian</option><option value="eng" {if $smarty.get.lang == 'eng'}selected{/if}>English</option></select>
+		<fieldset>
+			<legend>{#dbaccess#}</legend>
+			
+			<p>{#dbhelp#}</p>
+
+			<label for="dbuser">{#dbuser#}:</label>
+			<input type="text" name="dbuser" value="{$smarty.post.dbuser}" maxlength=64 />
+			
+			<br /><br />
+			<label for="dbpass">{#dbpass#}:</label>
+			<input type="text" name="dbpass" value="{$smarty.post.dbpass}" maxlength=64 />
+			
+			<br /><br />
+			<label for="dbname">{#dbname#}:</label>
+			<input type="text" name="dbname" value="{$smarty.post.dbname}" maxlength=64 />
+
+			<br /><br />
+			<label for="dbhost">{#dbhost#}:</label>
+			<input type="text" name="dbhost" value="{if $smarty.post.dbhost}{$smarty.post.dbhost}{else}localhost{/if}" maxlength=64 />
+			
+			<br /><br />
+			<label for="dbhost">{#prefix#}:</label>
+			<input type="text" name="prefix" value="{if $smarty.post.prefix}{$smarty.post.prefix}{else}".PREFIX."{/if}" maxlength=8 />
+		</fieldset>
+
+		<fieldset>
+			<legend>{#badmin#}</legend>
+			
+			<p>{#badminhelp#}</p>
+
+			<label for="blog_user">{#login#}:</label>
+			<input type="text" name="blog_user" value="{$smarty.post.blog_user}" maxlength=64 />
+			
+			<br /><br />
+			<label for="blog_pass">{#password#}:</label>
+			<input type="text" name="blog_pass" value="{$smarty.post.blog_pass}" maxlength=64 />
+
+			<br /><br />
+			<label for="blog_mail">{#mail#}:</label>
+			<input type="text" name="blog_mail" value="{$smarty.post.blog_mail}" maxlength=64 />
+		</fieldset>
+
+		<fieldset>
+			<legend>{#lj#}</legend>
+			
+			<p>{#ljhelp#}</p>
+
+			{if $noLJ}<p><strong>{#noLJ#}</strong></p>{/if}
+
+			<label for="lj_user">{#login#}:</label>
+			<input type="text" name="lj_user" value="{$smarty.post.lj_user}" maxlength=64 {if $noLJ}disabled="true"{/if} />
+			
+			<br /><br />
+			<label for="lj_pass">{#password#}:</label>
+			<input type="text" name="lj_pass" value="{$smarty.post.lj_pass}" maxlength=64 {if $noLJ}disabled="true"{/if} />
+		</fieldset>
+
+		<fieldset>
+			<legend>{#settings#}</legend>
+			
+			<p>{#mbhelp#}</p>
+
+			<label for="mailbot">{#mailbot#}:</label>
+			<input type="text" name="mailbot" value="{if $smarty.post}{$smarty.post.mailbot}{else}InTerra Mail Bot <noreply@domain.com>{/if}" maxlength=64 />
+
+			<br /><br />
+
+			<p>{#rsshelp#}</p>
+
+			<label for="rsshead">{#rsstitle#}:</label>
+			<input type="text" name="rsshead" value="{if $smarty.post}{$smarty.post.rsshead}{else}InTerra Blog Machine{/if}" maxlength=64 />
+
+			<br /><br />
+			<label for="rssdesc">{#rssdesc#}:</label>
+			<input type="text" name="rssdesc" value="{if $smarty.post}{$smarty.post.rssdesc}{else}{#rssdef#}{/if}" maxlength=255 />
+		</fieldset>
+
+		<input type="submit" name="go" value="Go!" style="width: 150px; height: 50px;" />
+	</form>
+	{/if}
+</div>
+</body>
+</html>

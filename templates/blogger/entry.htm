@@ -1,0 +1,40 @@
+{* load lang file *}
+{dynamic}
+	{config_load file="lang`$smarty.const.PLANG`.txt" section="entry"}
+{/dynamic}
+{* the dynamic tag is neccessary such that these block of the template are not cached *}
+
+<div class="entry">
+      <h2>{$data.subject}</h2>
+	  {if $data.image}<img src="{$SERVER_ROOT}thumb/{$data.id}/" align="left" hspace="10" vspace="4" alt="Icon" />{/if}
+      {$data.content}
+
+	  <a href="{$SELF}#top"><img src="images/top.gif" style="float: left" border="0" alt="Top" /></a>
+
+	  <p class="posted">
+	  {if $data.section}<b>{#cat#}:</b> <a href="{$SERVER_ROOT}{$data.section.name}">{$data.section.fullName}</a>{else}{#noSecName#}<br />{/if}
+	  {if $data.keywords}
+		  <b>{#keys#}:</b>
+
+		  {foreach from=$data.keywords item=keyword name=myKeys}
+			{if not $smarty.foreach.myKeys.last}
+				<a href="{$SERVER_ROOT}keyword/{$keyword.link}/">{$keyword.word}</a>,
+			{else}
+				<a href="{$SERVER_ROOT}keyword/{$keyword.link}/">{$keyword.word}</a>
+			{/if}
+		  {/foreach}
+		  <br />
+	  {/if}
+
+      {if $data.ljurl}
+        <a href="http://www.livejournal.com/users/{$smarty.const.LJ_USER}/{$data.ljurl}.html">@<b>lj</b></a>
+      {/if}
+	  {dynamic}
+		  {if $smarty.session.admin}
+			  [ <a href="{$SELF}delete/" OnClick="return confirmLink(this,'{#youSure#}');">{#delete#}</a> : <a href="{$SELF}edit/">{#edit#}</a> ]
+		  {/if}
+	  {/dynamic}
+	  </p>
+</div>
+
+{include file="comments.htm"}

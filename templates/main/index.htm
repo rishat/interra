@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>InTerra Blog Machine {if $data.subject or $title}| {$data.subject}{$title}{/if}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<meta name="description" content="{if $data.content}{$data.content|strip_tags|truncate:255}{else}Это очень хороший блог на очень хорошем движке от dull.ru -- InTerra{/if}" />
+<meta http-equiv="Content-Language" content="ru" />
+<meta name="Copyright" content="Copyright (c) 2003-{$smarty.now|date_format:"%Y"} InTerra Blog Machine" />
+
+{* this tag is important, as it is stupid to index post lists, however, separate post pages are all indexed *}
+<meta name="ROBOTS" content="{if $template != 'entry.htm'}noindex, follow{else}index, nofollow{/if}" />
+
+{* load lang file *}
+{dynamic}
+	{config_load file="lang`$smarty.const.PLANG`.txt"}
+{/dynamic}
+
+<base href="{$TEMPLATE_ROOT}" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{$SERVER_ROOT}rss/" />
+<link rel="home" title="home" href="{$SERVER_ROOT}" />
+<link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+<script language="JavaScript" src="scripts.js" type="text/javascript"></script>
+<script language="JavaScript" src="travel.js" type="text/javascript"></script>
+<script language="JavaScript" src="{$SERVER_ROOT}lib/lightbox/lightbox.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="{$SERVER_ROOT}lib/lightbox/lightbox.css" />
+
+{* this is all wiki edit specific, please don't delete *}
+{if $template == 'add.htm' or $template == 'entry.htm'}
+ {dynamic}
+	{if $smarty.session.admin}
+	 {literal}
+	 <style>
+	 .toolbar tr { background: #fff; }
+	 .toolbar .btn-, .toolbar  .btn-hover,  .toolbar .btn-active,
+	 .toolbar .btn-pressed { background: #fff; color: ButtonText;
+	  border: 1px solid ButtonFace; padding: 1px;  margin: 0px; cursor: pointer; cursor: hand; }
+	 .toolbar .btn- img  { width: 20px; height: 20px; }
+	 .toolbar .btn-hover { border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight; }
+	 .toolbar .btn-active,
+	 .toolbar .btn-pressed { border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow; }
+	 .toolbar .btn-pressed { background: ButtonHighlight; }
+	 .edname { display: none; }
+	 </style>
+	 <script language="JavaScript" src="protoedit.js" type="text/javascript"></script>
+	 <script language="JavaScript" src="wikiedit2.js" type="text/javascript"></script>
+	 {/literal}
+	{/if}
+ {/dynamic}
+{/if}
+{* end wiki specific shit *}
+
+</head>
+
+
+<body onload="travelInit(); initLightbox(); {if $template == 'add.htm' or $template == 'entry.htm'}{dynamic}{if $smarty.session.admin}wE = new WikiEdit(); wE.init('postText','WikiEdit','edname'); {/if}{/dynamic}{/if}">
+
+<!-- top -->
+<a name="top"></a>
+<!-- end top -->
+
+<div id="wrap">
+  <div id="logo">InTerra Blog Machine</div>
+
+  <hr class="hide" />
+
+  <!-- breadcrumbs start -->
+  <div id="breadcrumbs">
+    <a href="{$SERVER_ROOT}">{#home#}</a>
+	{foreach name=numloop from=$breadCrumbs item=crumb}
+      {if not $smarty.foreach.numloop.last}
+        &raquo; <a href="{$SERVER_ROOT}{$crumb.link}">{$crumb.name}</a>
+      {else}
+        &raquo; {$crumb.name}
+      {/if}
+    {/foreach}
+  </div>
+  <!-- breadcrumbs end -->
+
+  <hr class="hide" />
+
+  <!-- content start -->
+  <div id="content">
+    {include file=$template}
+	<hr class="hide" />
+  </div>
+  <!-- content end -->
+
+  <hr class="hide" />
+
+  <!-- left column start -->
+  <div id="sidebar">
+
+  	<div id="calendar">
+		{if $template == 'entry.htm'}
+			{calendar year=$data.intime|date_format:"%Y" month=$data.intime|date_format:"%m" day=$data.intime|date_format:"%d"}
+		{elseif $template == 'dayView.htm'}
+			{calendar year=$year month=$month day=$day}
+		{else}
+			{calendar year=$year month=$month}
+		{/if}
+	</div>
+
+
+	{* load sections from database *}
+	{load_sections var=mySections}
+    <h3>{#secTitle#}</h3>
+    <ul id="quickbits">
+	  {foreach from=$mySections item=mySection}
+		 <li><a href="{$SERVER_ROOT}{$mySection.name}/">{$mySection.fullName}</a></li>
+	  {foreachelse}
+		 <li>{#noSec#}</li>
+	  {/foreach}
+    </ul>
+    <p>&nbsp;</p>
+
+
+    <h3>{#useful#}</h3>
+    <ul id="poleznosti">
+      <!-- <li><a href="{$SERVER_ROOT}about/">{#about#}</a></li> -->
+      <li><a href="{$SERVER_ROOT}keyword/">{#keywords#}</a></li>
+	  <li><a href="{$SERVER_ROOT}search/">{#search#}</a></li>
+      <li><a href="{$SERVER_ROOT}rss/"><img src="images/rss.gif" border="0" alt="[rss]" /></a> {if $section}[ <a href="{$SERVER_ROOT}{$section.name}/rss/">{#secRSS#}</a> ]{/if}</li>
+    </ul>
+
+
+    <h3>{#stuff#}</h3>
+    <h4>{#friendz#}</h4>
+    <ul>
+      <li><a href="http://clops.livejournal.com/">LJ User Clops</a></li>
+    </ul>
+    <h4>{#partners#}</h4>
+    <ul>
+	  <li><a href="http://dull.ru/">dull.ru</a></li>
+    </ul>
+
+
+	<h3>{#stats#}</h3>
+	{dynamic}
+	<ul id="stats">
+      <li>{#tgen#}: {$TIME} s.</li>
+      <li>{#queries#}: {$TOTALDBQUERIES}</li>
+	  <li>{#memory#}: {$MEMORY|default:"n/a"} Mb</li>
+      <li>{#static#}: {if $CACHE}{#yes#}{else}{#no#}{/if}</li>
+    </ul>
+	{/dynamic}
+
+	<!--  Login Form -->
+	{dynamic}
+	<div id="loginForm">
+	  {if $smarty.session.admin}
+		  <div id="loggedIn">
+			<h3>{#lOptions#}:</h3>
+			<ul id="adminOptions">
+			  <li><a href="{$SERVER_ROOT}add/">{#addEntry#}</a></li>
+			  <li><a href="{$SERVER_ROOT}logout/">{#logout#}</a></li>
+			  <li><a href="{$SERVER_ROOT}clearcache/">{#killCache#}</a></li>
+			</ul>
+		  </div>
+	  {else}
+		  <h3>{#lOptions#}:</h3>
+		  <form action="{$SERVER_ROOT}login/" method="post">
+			<table cellspacing="1" cellpadding="1" border="0" align="center">
+				<tr>
+					<td align="right">{#user#}:</td>
+					<td><input type="text" name="user" maxlength="32" class="loginInput" tabindex="1" /></td>
+					<td rowspan="2"><input type="submit" value=">>" tabindex="3" /></td>
+				</tr>
+
+				<tr>
+					<td align="right">{#pass#}:</td>
+					<td><input type="password" name="pass" maxlength="32" class="loginInput" tabindex="2" /></td>
+				</tr>
+			</table>
+		  </form>
+	  {/if}
+	</div>
+	{/dynamic}
+	<!--  End Login Form -->
+  </div>
+  <!-- left column end -->
+
+  <hr class="hide">
+  <p id="footer">Powered by <a href="http://dull.ru/interra/">InTerra Blog Machine {$smarty.const.VERSION}</a></p>
+</div>
+</body></html>
+<!--
+
+  The Matrix is watching you!
+
+  And so are the creators of InTerra Blog Machine, thus, plese, don't remove the link to our website!
+
+-->

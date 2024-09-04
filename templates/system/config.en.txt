@@ -1,0 +1,67 @@
+save                = Save
+saved               = All changes saved!
+notsaved            = New parameters could not be saved, please check access permissions to the file config.inc.php
+wait                = Please wait...
+
+access_par          = Access Parameters
+admin_login         = Login
+admin_login_help    = User name to loginto the blog administration with. May contain special characters.
+admin_pass          = Password
+admin_pass_help     = Access Password to access the administrative functions. Please enter twice to exclude typing errors. In case the fields are left blank, the password will not be changed!
+admin_mail          = E-Mail 
+admin_mail_help     = E-Mail address of the blog owner where all the comments will be mailed to (in case permitted)
+
+posting             = Entries
+allow_files         = File Uploads
+allow_files_help    = Allow file uploads when adding a new entry (max upload size is limited by the server, usually approx 2Mb)
+allow_keys          = Allow Tags / Keywords
+allow_keys_help     = Tags can be used to group your content. They are also very useful for content classification and searching.
+allow_teaser        = Teaser Image
+allow_teaser_help   = Entries can be accompanied by a teaser image that will be scaled down automatically.
+allow_lj            = Crosspost to livejournal.com
+allow_lj_help       = Allow cross-post of content to a dedicated livejournal.com account. The syndication is two-way, meaning that all the changes in your local blog will be also reflected in livejournal.
+lj_user             = LJ Login
+lj_user_help        = Username of the livejournal account where the entries shall be posted to.
+lj_pass             = LJ Password
+lj_pass_help        = Password of the livejournal account where the entries shall be posted to.
+allow_hru           = User Defined HRURLs
+allow_hru_help      = Human Readable URLs are usually formed automatically from the entries title. Yet they can also be defined.
+allow_cats          = Replication Settings
+allow_cats_help     = When activated, you will have an option of posting your entries to a dedicated category only without replication on the main ticker.
+allow_wysiwyg       = Use TinyMCE
+allow_wysiwyg_help  = Use a WYSIWYG editor instead of the handy wiki parser.
+
+mail_bm             = E-mail comments
+mail_bm_help        = Entry comments will be e-mailed to your address.
+mailbot             = Bot's reply-to address
+mailbot_help        = When you reply to other people's comments, they will receive them via e-mail from this address
+allow_captcha       = Spam Protection
+allow_captcha_help  = In order to make sure that a human being is leaving a comment, a verification image (CAPTCHA) will be used.
+nocomment           = Disable comments after...
+nocomment_help      = After this number of days from the post date &mdash; noone will be able to leave new comments to the entry.
+allow_trees         = Treelike Comments
+allow_trees_help    = When activated, users will be able to reply to each others comments
+tree_depth          = Maximum Tree Depth
+tree_depth_help     = In order to minimiza «flame», users will be unable to reply to each others comments after this depth of the tree is reached.
+
+templates           = Templates
+t_set               = Skin
+t_set_help          = One click and your blog looks totally different!
+console             = Debug Console
+console_help        = When editing templates it may be useful to see all the data that is available to the selected template in a debug console. Makes designing new skins a comfortable process.
+
+speed               = Performance
+static              = Compile Static Pages (Cache)
+static_help         = When activated, all the content will be compiled into static pages. This is a dramatic performance improvement as even DB connections are not open when the pages are present in static cache. The compilation is fully transparent and shall not bring any discomfort to using your blog.
+cache_time          = Cache Lifetime (in seconds)
+cache_time_help     = Static pages (even when nothing has changed) will lose their «freshness» and forced to be recompiled. It is recommended to use a value between 12 hours (43200 seconds) and several weeks.
+recompile           = Compile Template Check?
+recompile_help      = Skin templates are compiled into PHP code. In case the template changes, then, of course, it has to be recompiled. This can happen transparently (costs 2 file system hits per page) or on request. It is recommended to turn this option off on production sites.
+subdirs             = Create Subdirs?
+subdirs_help        = Some hosting providers limit the ability of web application to create directories. Yet remember, that with subdirectories the application will have better performance.
+hru                 = Smart URLs
+hru_help            = Use smart URLs eg. /YYYY/MM/DD/name_of_post.html — instead of hard /entry/1234.html, this option costs +1 Query to the database when serving any entries page.
+pagers              = Allow Pagers
+pagers_help         = When activated, the users will be able to view all your posts (in the main ticker and in sections) in form of an ticker with «prev.» and «next.» links. This option costs +1 Query to the database when serving any non-entry pages.
+per_page            = Entries per page
+per_page_help       = Maximum number of entries to show per page

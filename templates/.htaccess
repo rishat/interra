@@ -1,0 +1,11 @@
+
+
+############
+# SECURITY #
+###########################################################
+
+<files *.htm> 
+ Order Deny,Allow 
+ Deny From All 
+</files>
+

@@ -1,0 +1,22 @@
+{* load lang file *}
+{dynamic}
+	{config_load file="lang`$smarty.const.PLANG`.txt" section="entry"}
+{/dynamic}
+{* the dynamic tag is neccessary such that these block of the template are not cached *}
+
+<div class="entry">
+      <h2>{$data.title}</h2>
+      {$data.content_p}
+
+	  <a href="{$SELF}#top"><img src="images/top.gif" style="float: left" border="0" alt="Top" /></a>
+
+	  <p class="posted">
+	  <br />
+
+	  {dynamic}
+		  {if $smarty.session.admin}
+			  [ <a href="{$SELF}?do=delete" OnClick="return confirmLink(this,'{#youSure#}');">{#delete#}</a> : <a href="{$SELF}?do=edit">{#edit#}</a> ]
+		  {/if}
+	  {/dynamic}
+	  </p>
+</div>

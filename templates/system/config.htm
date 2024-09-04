@@ -1,0 +1,495 @@
+{* load lang file *}
+{config_load file="config`$smarty.const.PLANG`.txt"}
+
+{literal}
+<script language="JavaScript">
+	function checkHiddenCacheFields(){
+	   if(document.getElementById('SMARTY_ALLOW_CACHE').checked){
+	       unhide('ROW_CT');
+	       unhide('ROW_FF');
+	   }else{
+	       hide('ROW_CT');
+	       hide('ROW_FF');
+	   }
+	}
+	
+	function checkLJSettings(){
+	   if(document.getElementById('ENABLE_LJ').checked){
+	       unhide('ROW_LJP');
+	       unhide('ROW_LJU');
+	   }else{
+	       hide('ROW_LJP');
+	       hide('ROW_LJU');
+	   }
+	}
+	
+	function checkTreeDepth(){
+	   if(document.getElementById('COMMENT_TREE').checked){
+	       unhide('ROW_CTD');
+	   }else{
+	       hide('ROW_CTD');
+	   }
+	}
+	
+	function checkPerPage(){
+	   if(document.getElementById('ENABLE_PAGERS').checked){
+	       unhide('ROW_PP');
+	   }else{
+	       hide('ROW_PP');
+	   }
+	}
+	
+	function saveChanges(but){
+	    but.value ='{/literal}{#wait#}{literal}...'; 
+	    but.disabled = true; 
+	    document.getElementById('addForm').submit();
+	}
+</script>
+<style>
+    .setting    {
+                   color: #000;
+                }
+            
+    .setdivider {
+                   border-top: 1px solid #aaa; 
+                }
+</style>
+{/literal}
+
+<h2>InTerra Config</h2>
+{if $smarty.get.confirm}
+<div style="border: 1px solid #0a0; background: #cfc; padding: 10px;">
+    {#saved#}
+</div>
+{elseif $smarty.get.error}
+<div style="border: 1px solid #a00; background: #fcc; padding: 10px;">
+    {#notsaved#}
+</div>
+{/if}
+<form id="addForm" name="addForm" action="{$SELF}" method="post">
+
+    <fieldset><legend>&nbsp;{#access_par#}&nbsp;</legend>
+        <table width="100%" class="setting" cellspacing="0" cellpadding="2">
+            <tr>
+                <td width="70%">
+                    <label for="BLOGMASTER_U">
+                        <b>{#admin_login#}</b><br />
+                        <small><i>{#admin_login_help#}</i></small>
+                    </label>
+                </td>
+                <td width="30%">
+                    <input type="text" name="BLOGMASTER_U" id="BLOGMASTER_U" style="width: 100%;" maxlength="30" value="{$smarty.const.BLOGMASTER_U}" />
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="setdivider">
+                    <label for="BLOGMASTER_P">
+                        <b>{#admin_pass#}</b><br />
+                        <small><i>{#admin_pass_help#}</i></small>
+                    </label>
+                </td>
+                <td class="setdivider">
+                    <input type="password" name="BLOGMASTER_P" id="BLOGMASTER_P" style="width: 100%;" maxlength="30" value="" /><br />
+                    <input type="password" name="BLOGMASTER_P_2" id="BLOGMASTER_P_2" style="width: 100%;" maxlength="30" value="" />
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="setdivider">
+                    <label for="BLOGMASTER">
+                        <b>{#admin_mail#}</b><br />
+                        <small><i>{#admin_mail_help#}</i></small>
+                    </label>
+                </td>
+                <td class="setdivider">
+                    <input type="text" name="BLOGMASTER" id="BLOGMASTER" style="width: 100%;" maxlength="30" value="{$smarty.const.BLOGMASTER}" />
+                </td>
+            </tr>
+        </table>
+        <div align="right">
+            <input type="button" name="submitButton1" value="{#save#}" id="submitButton1" style="height: 24px; width: 100px" onclick="saveChanges(this);" />
+        </div>
+    </fieldset>
+    
+    
+    
+    
+    
+    <fieldset><legend>&nbsp;{#posting#}&nbsp;</legend>
+        <table width="100%" class="setting" cellspacing="0" cellpadding="2">
+            <tr>
+                <td width="70%">
+                    <label for="ALLOW_FILES">
+                        <b>{#allow_files#}</b><br />
+                        <small><i>{#allow_files_help#}</i></small>
+                    </label>
+                </td>
+                <td width="30%">
+                    <input type="checkbox" name="ALLOW_FILES" id="ALLOW_FILES" value="1" {if $smarty.const.ALLOW_FILES}checked{/if} />
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="setdivider">
+                    <label for="IMAGE_WIDTH">
+                        <b>{#image_width#}</b><br />
+                        <small><i>{#image_width_help#}</i></small>
+                    </label>
+                </td>
+                <td class="setdivider">
+                    <input type="text" name="IMAGE_WIDTH" id="IMAGE_WIDTH" style="width: 50px;" value="{if $smarty.const.IMAGE_WIDTH == 'IMAGE_WIDTH'}300{else}{$smarty.const.IMAGE_WIDTH}{/if}" /> px
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="setdivider">
+                    <label for="ALLOW_KEYWORDS">
+                        <b>{#allow_keys#}</b><br />
+                        <small><i>{#allow_keys_help#}</i></small>
+                    </label>
+                </td>
+                <td class="setdivider">
+                    <input type="checkbox" name="ALLOW_KEYWORDS" id="ALLOW_KEYWORDS" {if $smarty.const.ALLOW_KEYWORDS}checked{/if} />
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="setdivider">
+                    <label for="ALLOW_TEASER_IMAGE">
+                        <b>{#allow_teaser#}</b><br />
+                        <small><i>{#allow_teaser_help#}</i></small>
+                    </label>
+                </td>
+                <td class="setdivider">
+                    <input type="checkbox" name="ALLOW_TEASER_IMAGE" id="ALLOW_TEASER_IMAGE" {if $smarty.const.ALLOW_TEASER_IMAGE}checked{/if} />
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="setdivider">
+                    <label for="ENABLE_LJ">
+                        <b>{#allow_lj#}</b><br />
+                        <small><i>{#allow_lj_help#}</i></small>
+                    </label>
+                </td>
+                <td class="setdivider">
+                    <input type="checkbox" name="ENABLE_LJ" id="ENABLE_LJ" {if $smarty.const.ENABLE_LJ}checked{/if} onclick="checkLJSettings();" />
+                </td>
+            </tr>
+            
+                <tr id="ROW_LJU" style="{if !$smarty.const.ENABLE_LJ}display: none;{/if}">
+                    <td style="padding-left: 25px;">
+                        <label for="LJ_USER">
+                            <b>{#lj_user#}</b><br />
+                            <small><i>{#lj_user_help#}</i></small>
+                        </label>
+                    </td>
+                    <td>
+                        <input type="text" name="LJ_USER" id="LJ_USER" style="width: 100%;" maxlength="30" value="{$smarty.const.LJ_USER}" />
+                    </td>
+                </tr>
+                <tr id="ROW_LJP" style="{if !$smarty.const.ENABLE_LJ}display: none;{/if}">
+                    <td style="padding-left: 25px;">
+                        <label for="LJ_PASS">
+                            <b>{#lj_pass#}</b><br />
+                            <small><i>{#lj_pass_help#}</i></small>
+                        </label>
+                    </td>
+                    <td>
+                        <input type="password" name="LJ_PASS" id="LJ_PASS" style="width: 100%;" maxlength="30" value="{$smarty.const.LJ_PASS}" />
+                    </td>
+                </tr>
+            
+            <tr>
+                <td class="setdivider">
+                    <label for="ALLOW_HANDINPUT">
+                        <b>{#allow_hru#}</b><br />
+                        <small><i>{#allow_hru_help#}</i></small>
+                    </label>
+                </td>
+                <td class="setdivider">
+                    <input type="checkbox" name="ALLOW_HANDINPUT" id="ALLOW_HANDINPUT" {if $smarty.const.ALLOW_HANDINPUT}checked{/if} />
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="setdivider">
+                    <label for="ENABLE_TICKER_C">
+                        <b>{#allow_cats#}</b><br />
+                        <small><i>{#allow_cats_help#}</i></small>
+                    </label>
+                </td>
+                <td class="setdivider">
+                    <input type="checkbox" name="ENABLE_TICKER_C" id="ENABLE_TICKER_C" {if $smarty.const.ENABLE_TICKER_C}checked{/if} />
+                </td>
+            </tr>
+            
+            {if $tiny_mce}
+            <tr>
+                <td class="setdivider">
+                    <label for="WYSIWYG">
+                        <b>{#allow_wysiwyg#}</b><br />
+                        <small><i>{#allow_wysiwyg_help#}</i></small>
+                    </label>
+                </td>
+                <td class="setdivider">
+                    <input type="checkbox" name="WYSIWYG" id="WYSIWYG" {if $smarty.const.WYSIWYG}checked{/if} />
+                </td>
+            </tr>
+            {/if}
+        </table>
+        
+        <div align="right">
+            <input type="button" name="submitButton2" value="{#save#}" id="submitButton2" style="height: 24px; width: 100px" onclick="saveChanges(this);" />
+        </div>
+    </fieldset>
+    
+    
+    
+    
+    
+    
+    <fieldset><legend>&nbsp;{#comments#}&nbsp;</legend>
+        
+        <table width="100%" class="setting" cellspacing="0" cellpadding="2">
+            <tr>
+                <td width="70%">
+                    <label for="ENABLE_BMMAIL">
+                        <b>{#mail_bm#}</b><br />
+                        <small><i>{#mail_bm_help#}</i></small>
+                    </label>
+                </td>
+                <td width="30%">
+                    <input type="checkbox" name="ENABLE_BMMAIL" id="ENABLE_BMMAIL" value="1" {if $smarty.const.ENABLE_BMMAIL}checked{/if} />
+                </td>
+            </tr>
+            
+            <!--
+            <tr>
+                <td class="setdivider">
+                    <label for="ENABLE_UMAIL">
+                        <b>Notify Users</b><br />
+                        <small><i>InTerra can ignore any changes made to the templates and work with precompiled versions directly. This is a performance booster as well.</i></small>
+                    </label>
+                </td>
+                <td class="setdivider">
+                    <input type="checkbox" name="ENABLE_UMAIL" id="ENABLE_UMAIL" {if $smarty.const.ENABLE_UMAIL}checked{/if} />
+                </td>
+            </tr>
+            -->
+            
+            <tr>
+                <td class="setdivider">
+                    <label for="MAILBOT">
+                        <b>{#mailbot#}</b><br />
+                        <small><i>{#mailbot_help#}</i></small>
+                    </label>
+                </td>
+                <td class="setdivider">
+                    <input type="text" name="MAILBOT" id="MAILBOT" style="width: 100%;" maxlength="250" value="{$smarty.const.MAILBOT}" />
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="setdivider">
+                    <label for="ANTISPAM">
+                        <b>{#allow_captcha#}</b><br />
+                        <small><i>{#allow_captcha_help#}</i></small>
+                    </label>
+                </td>
+                <td class="setdivider">
+                    <input type="checkbox" name="ANTISPAM" id="ANTISPAM" {if $smarty.const.ANTISPAM}checked{/if} />
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="setdivider">
+                    <label for="COMMENT_DAYS">
+                        <b>{#nocomment#}</b><br />
+                        <small><i>{#nocomment_help#}</i></small>
+                    </label>
+                </td>
+                <td class="setdivider">
+                    <input type="text" name="COMMENT_DAYS" id="COMMENT_DAYS" style="width: 100%;" maxlength="6" value="{$smarty.const.COMMENT_DAYS}" />
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="setdivider">
+                    <label for="COMMENT_TREE">
+                        <b>{#allow_trees#}</b><br />
+                        <small><i>{#allow_trees_help#}</i></small>
+                    </label>
+                </td>
+                <td class="setdivider">
+                    <input type="checkbox" name="COMMENT_TREE" id="COMMENT_TREE" {if $smarty.const.COMMENT_TREE}checked{/if} onclick="checkTreeDepth();" />
+                </td>
+            </tr>
+            
+                <tr id="ROW_CTD" style="{if !$smarty.const.COMMENT_TREE}display: none;{/if}">
+                    <td style="padding-left: 25px;">
+                        <label for="COMMENT_TREE_DEPTH">
+                            <b>{#tree_depth#}</b><br />
+                            <small><i>{#tree_depth_help#}</i></small>
+                        </label>
+                    </td>
+                    <td>
+                        <input type="text" name="COMMENT_TREE_DEPTH" id="COMMENT_TREE_DEPTH" style="width: 100%;" maxlength="3" value="{$smarty.const.COMMENT_TREE_DEPTH}" />
+                    </td>
+                </tr>
+        </table>
+        
+        <div align="right">
+            <input type="button" name="submitButton3" value="{#save#}" id="submitButton3" style="height: 24px; width: 100px" onclick="saveChanges(this);" />
+        </div>
+    </fieldset>
+    
+    
+    
+    <fieldset><legend>&nbsp;{#templates#}&nbsp;</legend>
+        <table width="100%" class="setting" cellspacing="0" cellpadding="2">
+            <tr>
+                <td width="70%">
+                    <label for="TEMPLATE_ROOT">
+                        <b>{#t_set#}</b><br />
+                        <small><i>{#t_set_help#}</i></small>
+                    </label>
+                </td>
+                <td width="30%">
+                    <select name="TEMPLATE_ROOT" id="TEMPLATE_ROOT">
+                        {html_options options=$templates selected=$currentTemplate}
+                    </select>
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="setdivider">
+                    <label for="SMARTY_DEBUG">
+                        <b>{#console#}</b><br />
+                        <small><i>{#console_help#}</i></small>
+                    </label>
+                </td>
+                <td class="setdivider">
+                    <input type="checkbox" name="SMARTY_DEBUG" id="SMARTY_DEBUG" {if $smarty.const.SMARTY_DEBUG}checked{/if} />
+                </td>
+            </tr>
+            
+        </table>
+        
+        <div align="right">
+            <input type="button" name="submitButton4" value="{#save#}" id="submitButton4" style="height: 24px; width: 100px" onclick="saveChanges(this);" />
+        </div>
+    </fieldset>
+    
+    
+    
+    <!-- block on performance -->
+	<fieldset><legend>&nbsp;{#speed#}&nbsp;</legend>
+        
+        <table width="100%" class="setting" cellspacing="0" cellpadding="2">
+            <tr>
+                <td width="70%">
+                    <label for="SMARTY_ALLOW_CACHE">
+                        <b>{#static#}</b><br />
+                        <small><i>{#static_help#}</i></small>
+                    </label>
+                </td>
+                <td width="30%">
+                    <input type="checkbox" name="SMARTY_ALLOW_CACHE" id="SMARTY_ALLOW_CACHE" onclick="checkHiddenCacheFields();" value="1" {if $smarty.const.SMARTY_ALLOW_CACHE}checked{/if} />
+                </td>
+            </tr>
+            
+            <tr id="ROW_CT" style="{if !$smarty.const.SMARTY_ALLOW_CACHE}display: none;{/if}">
+                <td style="padding-left: 25px;">
+                    <label for="SMARTY_CACHE_TIME">
+                        <b>{#cache_time#}</b><br />
+                        <small><i>{#cache_time_help#}</i></small>
+                    </label>
+                </td>
+                <td>
+                    <input type="text" name="SMARTY_CACHE_TIME" id="SMARTY_CACHE_TIME" style="width: 100%;" maxlength="10" value="{$smarty.const.SMARTY_CACHE_TIME}" />
+                </td>
+            </tr>
+            <!--
+            <tr id="ROW_FF" style="{if !$smarty.const.SMARTY_ALLOW_CACHE}display: none;{/if}">
+                <td style="padding-left: 25px;">
+                    <label for="SMARTY_FORCE_FLUSH">
+                        <b>Force Cache Flush</b><br />
+                        <small><i>In order to save on space, all the static pages are deleted once every...</i></small>
+                    </label>
+                </td>
+                <td>
+                    <select name="SMARTY_FORCE_FLUSH" id="SMARTY_FORCE_FLUSH" style="width: 100%;" />
+                        <option>1</option>
+                    </select>
+                </td>
+            </tr>
+            -->
+            
+            <tr>
+                <td class="setdivider">
+                    <label for="SMARTY_COMPILE_CHECK">
+                        <b>{#recompile#}</b><br />
+                        <small><i>{#recompile_help#}</i></small>
+                    </label>
+                </td>
+                <td class="setdivider">
+                    <input type="checkbox" name="SMARTY_COMPILE_CHECK" id="SMARTY_COMPILE_CHECK" {if $smarty.const.SMARTY_COMPILE_CHECK}checked{/if} />
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="setdivider">
+                    <label for="SMARTY_SUBDIRS">
+                        <b>{#subdirs#}</b><br />
+                        <small><i>{#subdirs_help#}</i></small>
+                    </label>
+                </td>
+                <td class="setdivider">
+                    <input type="checkbox" name="SMARTY_SUBDIRS" id="SMARTY_SUBDIRS" {if $smarty.const.SMARTY_SUBDIRS}checked{/if} />
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="setdivider">
+                    <label for="ALLOW_NICEURLS">
+                        <b>{#hru#}</b><br />
+                        <small><i>{#hru_help#}</i></small>
+                    </label>
+                </td>
+                <td class="setdivider">
+                    <input type="checkbox" name="ALLOW_NICEURLS" id="ALLOW_NICEURLS" {if $smarty.const.ALLOW_NICEURLS}checked{/if} />
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="setdivider">
+                    <label for="ENABLE_PAGERS">
+                        <b>{#pagers#}</b><br />
+                        <small><i>{#pagers_help#}</i></small>
+                    </label>
+                </td>
+                <td class="setdivider">
+                    <input type="checkbox" name="ENABLE_PAGERS" id="ENABLE_PAGERS" onclick="checkPerPage();" {if $smarty.const.ENABLE_PAGERS}checked{/if} />
+                </td>
+            </tr>
+            
+                <tr id="ROW_PP" style="{if !$smarty.const.ENABLE_PAGERS}display: none;{/if}">
+                    <td style="padding-left: 25px;">
+                        <label for="PER_PAGE">
+                            <b>{#per_page#}</b><br />
+                            <small><i>{#per_page_help#}</i></small>
+                        </label>
+                    </td>
+                    <td>
+                        <input type="text" name="PER_PAGE" id="PER_PAGE" style="width: 100%;" maxlength="3" value="{$smarty.const.PER_PAGE}" />
+                    </td>
+                </tr>
+            
+        </table>
+		<div align="right">
+            <input type="button" name="submitButton5" value="{#save#}" id="submitButton5" style="height: 24px; width: 100px" onclick="saveChanges(this);" />
+        </div>
+	</fieldset>
+</form>

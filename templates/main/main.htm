@@ -1,0 +1,28 @@
+{* load lang file *}
+{config_load file="lang`$smarty.const.PLANG`.txt" section="main"}
+
+{foreach from=$data item=entry}
+
+	<!-- start entry: {$entry.id} -->
+	<div class="entry"> 
+      <h2 class="entryTitle">{$entry.subject}</h2>
+      {if $entry.image}<img src="{$SERVER_ROOT}thumb/{$entry.id}/" align="left" hspace="10" vspace="4" alt="Icon" />{/if}
+	  {$entry.content|cut:"`$entry.url`":#readon#}
+
+      <p class="posted">{$entry.intime|date_format:'%b. %d, %Y // %H:%M'} {if $entry.comments}| <span class="clink"><a href="{$entry.url}">{#comments#} ({$entry.commentcount})</a></span>{else}| <a href="{$entry.url}">{#noComments#}</a>{/if} </p>
+	  
+	  <hr class="hide" />
+	</div>
+	<!-- end entry: {$entry.id} -->
+
+{foreachelse}
+	<div class="entry">
+		<h2 class="entryTitle">{#noJoy#}</h2>
+		<p>{#explained#}</p>
+	</div>
+{/foreach}
+
+{* figure out pager behaviour *}
+{if $smarty.const.ENABLE_PAGERS and $pagerTotal > $smarty.const.PER_PAGE}
+	{include file="pagers.htm"}
+{/if}

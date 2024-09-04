@@ -1,0 +1,203 @@
+{* load lang file *}
+{config_load file="lang`$smarty.const.PLANG`.txt" section="add"}
+
+<script language="javascript" type="text/javascript" src="{$SERVER_ROOT}lib/add.js"></script>
+<script language="javascript" type="text/javascript" src="{$SERVER_ROOT}lib/ajax/ajaxRequest.js"></script>
+
+{if $smarty.const.WYSIWYG}
+    <script language="javascript" type="text/javascript" src="{$SERVER_ROOT}lib/tiny_mce/tiny_mce.js"></script>
+
+	<script language="javascript" type="text/javascript">
+	tinyMCE.init({ldelim}
+		mode : "exact",
+		elements : "postText",
+		theme: "advanced",
+
+		theme_advanced_disable : "styleselect, help, visualaid",
+
+		theme_advanced_buttons1_add : "forecolor,backcolor",
+
+		plugins : "advlink,advhr,advimage,fullscreen,save,preview",
+   		theme_advanced_buttons3_add : "preview,fullscreen",
+   		plugin_preview_width : "500",
+   	    plugin_preview_height : "600",
+
+   	    theme_advanced_path_location : "bottom",
+   	    extended_valid_elements : "a[name|href|target|title|onclick]",
+   	    theme_advanced_resizing : true,
+   	    theme_advanced_resize_horizontal : false,
+
+   	    language : "ru",
+
+		relative_urls : "false",
+		remove_script_host : false,
+		document_base_url : "{$SERVER_ROOT}"
+
+	{rdelim});
+	</script>
+{/if}
+
+{literal}
+<script language="javascript" type="text/javascript">
+    var loadedTime     = new Date();
+    var restoreMessage = {/literal}'{#restore#}';{literal}
+</script>
+{/literal}
+
+
+<h2>{if $smarty.post.edit or $edit and !$newPost}{#edit#}{else}{#add#}{/if} {#entry#}</h2>
+<form id="addForm" name="addForm" action="{if $add}{$SELF}{else}{if $smarty.post.edit or $edit and !$newPost}{$SELF}{else}{$SERVER_ROOT}add/{/if}{/if}" method="post"  enctype="multipart/form-data">
+	{#addHelp#}
+
+	<h3>{#subject#}</h3>
+	<input type="text" name="subject" maxlength="255" id="subject" value="{$edit.subject}{$edit.title}" class="myTitle" />
+
+	<h3>{#content#}</h3>
+	<textarea name="content" id="postText" {if !$add and !$edit}onkeypress="saveDraft('{$smarty.server.REQUEST_URI}');"{/if}>{$edit.content}</textarea>
+	
+	{if !$add}
+        <div id="chernovik" style="line-height: 16px; display: none;">
+           <small><i>{#savedat#} @ <span id="cherDate">2006-12-12 17:56:12</span></i></small>
+        </div>    
+    
+        <h3>{#dateTime#}</h3>
+        {if $newPost}
+            {html_select_date end_year="+2" start_year="-2" field_array="date" field_order="DMY" time=`$smarty.const.NOW+$OFFSET`} // {html_select_time use_24_hours=true display_seconds=false field_array="time" time=`$smarty.const.NOW+$OFFSET`}
+        {else}
+            {html_select_date end_year="+2" start_year="-2" field_array="date" field_order="DMY" time=$edit.intime} // {html_select_time use_24_hours=true display_seconds=false field_array="time" time=$edit.intime}
+        {/if}
+    
+    
+        <fieldset><legend>&nbsp;{#options#}&nbsp;</legend>
+    
+            <!-- Start Options -->
+            <h3>{#allowComments#}</h3>
+            <select name="comments">
+                <option value="1" {if $edit.comments == '1' or !$edit}selected{/if}>{#yes#}</option>
+                <option value="0" {if $edit.comments == '0'}selected{/if}>{#no#}</option>
+            </select>
+    
+            {if $smarty.const.ENABLE_LJ}
+                {if !$edit.ljid and $edit and !$newPost}
+                {else}
+                    <h3>{#ljdup#} ({$smarty.const.LJ_USER})?</h3>
+                    <select name="lj">
+                        <option value="1" {if $edit.ljid or !$edit}selected{/if}>{#yes#}</option>
+                        <option value="0" {if !$edit.ljid and $edit}selected{/if}>{#no#}</option>
+                    </select>
+                    <input type="hidden" name="ljid" value="{$edit.ljid}" />
+                {/if}
+            {/if}
+            <!-- End Options -->
+    
+    
+            <!-- Start Section -->
+            <h3>{#section#}</h3>
+            <select name="section" id="section" onClick="checkNewSection();">
+                {html_options options=$addSections selected=$edit.catid}
+                <option value="0" {if $edit.catid == 0}selected{/if}>-- {#noSection#} --</option>
+                <option value="new">{#new#}...</option>
+            </select>
+    
+            <div id="newSection" style="display: none;">
+                <h5>{#secName#}</h5>
+                <input type="text" name="sectionNewName" maxlength="255" />
+                <h5>{#secNameUnix#}</h5>
+                <input type="text" name="sectionNewUnix" maxlength="255" />
+                <h5>{#secHidden#}</h5>
+                <select name="sectionNewHidden">
+                    <option value="1">{#yes#}</option>
+                    <option value="0" selected>{#no#}</option>
+                </select>
+            </div>
+    
+            {if $smarty.const.ENABLE_TICKER_C}
+            <div id="replicate" style="display: none;">
+                <h5>{#replicate#}</h5>
+                <select name="replicate">
+                    <option value="1" {if $edit.format == '1' or !$edit}selected{/if}>{#yes#}</option>
+                    <option value="0" {if $edit.format == '0'}selected{/if}>{#no#}</option>
+                </select>
+            </div>
+            {else}
+            <input type="hidden" name="replicate" value="1" />
+            {/if}
+            <!-- End Section -->
+    
+    
+            <!-- Start Keywords -->
+            {if $smarty.const.ALLOW_KEYWORDS}
+            <h3>{#keywords#}</h3>
+                <table width="100%" cellpadding="0" cellspacing="0"><tr>
+                <td width="100%"><input type="text" name="keywords" maxlength="255" id="keywords" value="{$edit.keywords}" /></td>
+                <td width="100">
+                <select name="select" id="keywordsDropdown" {if !$keywords}disabled{/if}>
+                    {html_options options=$keywords}
+                </select>
+                </td>
+                <td width="30">
+                <input type="button" name="addKeyword" value=">>" style="height: 20px; width: 30px" id="keywordsDropdownButton" onClick="addValue(); return false;" />
+                </td>
+    
+                </tr></table>
+            {/if}
+            <!-- End Keywords -->
+    
+            <!-- Start nice URL per hand definition -->
+            {if $smarty.const.ALLOW_HANDINPUT and $smarty.const.ALLOW_NICEURLS}
+            <h3>{#chpu#}</h3>
+            <input type="text" name="url" maxlength="255" value="{$edit.urlcache}" style="width: 97%;" />
+            {/if}
+            <!-- End nice URL per hand definition -->
+        </fieldset>
+    
+        {if $smarty.const.ALLOW_TEASER_IMAGE or $smarty.const.ALLOW_FILES}
+            <fieldset><legend>&nbsp;{#files#}&nbsp;</legend>
+                <!-- Start Teaser Image -->
+                {if $smarty.const.ALLOW_TEASER_IMAGE}
+                    <h3>{#postImage#}</h3>
+                    {if $edit.image}
+                        <input type="hidden" name="image" value="1" />
+                        <center><img src="{$SERVER_ROOT}thumb/{$edit.entryid}/" vspace="5" /><br /><small>[ <a href="{$SERVER_ROOT}entry/{$edit.entryid}/dropimage/" OnClick="return confirmLink(this,'{#youSure#}');">{#delete#}</a> ]</small><br /></center>
+                    {/if}
+                    <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
+                    <input type="file" name="myFile" style="width: 100%;" class="myFile" />
+                {/if}
+                <!-- End Teaser Image -->
+    
+                <!-- Start Other Files -->
+                {if $smarty.const.ALLOW_FILES}
+                    <h3>{#addFile#}</h3>
+                    <iframe src="{$SERVER_ROOT}filemanager/" width="100%" height="90" frameborder="0" name="ifiles" id="ifiles" marginwidth="0" marginheight="0" scrolling="yes"></iframe>
+                {/if}
+                <!-- End Other Files -->
+            </fieldset>
+        {/if}
+    
+        {if $smarty.post.edit or $edit}
+            <input type="hidden" name="edit" value="{$edit.entryid}" />
+        {/if}
+    {else}
+        {if $smarty.post.edit or $edit}
+            <input type="hidden" name="edit" value="{$edit.page_id}" />
+        {/if}
+        <h3>{#show_in_menu#}</h3>
+        <select name="show_in_menu">
+            <option value="t" {if $edit.show_in_menu == 't'}selected{/if}>{#yes#}</option>
+            <option value="f" {if $edit.show_in_menu == 'f'}selected{/if}>{#no#}</option>
+        </select>
+    {/if}
+	<div align="center" id="button">
+		<input type="submit" name="submitButton" value="{#send#}" id="submitButton" style="height: 24px; width: 170px" onClick="this.value='{#pleaseWait#}'; document.addForm.submitButton.disabled = true; document.getElementById('addForm').submit();" />
+	</div>
+</form>
+
+<script language="JavaScript">
+	if(document.getElementById('section').value > 0){ldelim}
+		document.getElementById('replicate').style.display="";
+	{rdelim}
+	
+	{if $newPost}
+	   checkDraft('{$smarty.server.REQUEST_URI}');
+	{/if}
+</script>

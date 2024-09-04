@@ -1,0 +1,36 @@
+{* load lang file *}
+{config_load file="lang`$smarty.const.PLANG`.txt" section="search"}
+
+<div class="entry">
+	<h2>{#search#}</h2>
+	<form id=searchForm method="post" action="{$SERVER_ROOT}search/">
+		<table cellpadding=2 cellspacing=2 width=100%>
+			<tr>
+				<td width=10>{#find#}:</td>
+				<td width=100%><input type="text" name="word" maxlength="64" class="searchInput" value="{$smarty.post.word|strip_tags}" /></td>
+				<td width=10><nobr>&nbsp;{#inSec#}:</nobr></td>
+				<td>
+					<select name="section">
+						<option value="0" {if !$smarty.post.section}selected{/if}>{#everywhere#}</option>
+						{html_options options=$sections selected=$smarty.post.section}
+					</select>
+				</td>
+				<td width=10><input type="submit" value=">>" /></td>
+			</tr>
+		</table>
+	</form>
+	<p>{#help#}</p>
+	
+	{if $smarty.post.word}
+		<h3>{#res1#} ({#total#} {$searchTotal}{if $searchTotal > 25}, {#shown#} 25{/if})</h3>
+		{if $searchResults}
+			<ol>
+			{foreach from=$searchResults item=entry}
+				<li><a href="{$entry.url}">{$entry.subject}</a> {if $entry.comments}({$entry.commentcount}){/if} <span class="kdatetime">{$entry.intime|date_format:'%d.%m.%Y // %H:%M'}</span><br /><span class="searchtext">{$entry.content|strip_tags|truncate:255}</span></li>
+			{/foreach}
+			</ol>
+		{else}
+			<p>{#noJoy#}</p>
+		{/if}
+	{/if}
+</div>

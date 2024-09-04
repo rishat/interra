@@ -1,0 +1,168 @@
+send		= Send
+pleaseWait	= Please Wait...
+comments	= Comments
+noComments	= No Comments
+delete		= Delete
+edit		= Edit
+home		= Home
+secTitle	= Sections...
+noSec		= No sections defined!
+latestOn	= Latest On
+follow		= Read On
+useful		= Useful
+about		= About
+keywords	= Keywords
+secRSS		= RSS of Section
+stats		= Stats
+tgen		= Page generated in
+queries		= SQL Queries
+static		= Static Page
+memory		= Memory Used
+lOptions	= Options
+addEntry	= Add Entry
+logout		= Logout
+killCache	= Cl. Cache
+user		= Login
+pass		= Password
+yes		    = Yes
+no		    = No
+back		= « Back
+forward		= Forward »
+search 		= Search
+readon		= Read On
+stuff		= Various...
+friendz		= Friends
+partners	= Partners
+cat		    = Category
+mostc       = Most Commented
+
+[add]
+savedat     = Draft saved
+restore     = Restore from draft?
+edit		= Edit
+add		    = Add
+entry		= Entry
+addHelp		= Please fill in all the fields.
+subject		= Subject
+content		= Content
+dateTime	= Date and Time
+allowComments	= Allow Comments?
+yes		    = Yes
+no		    = No
+noSection	= No Section
+new		    = New Section
+section		= Section
+secName		= Name of New Section
+secNameUnix	= Unix reference for new section (no spaces, latic charachters)
+secHidden	= Hidden?
+keywords	= Keywords (comma separated)
+postImage	= Entry Picture (jpg, max 100Kb)
+files		= Files
+options		= Options
+ljdup		= Duplicate post to LJ
+addFile		= Add File
+noFiles		= No Files
+youSure		= Remove File?
+replicate	= Replicate on main ticker?
+chpu		= HRURL (in case not set, produced automatically)
+
+[404]
+pageTitle	= The requested page does not exits, 404!
+pageHelp	= Millions of trained monkeys have searched the site and found nothing that you were looking for. However, they were able to fetch three random entries from the blog, which are listed below.
+
+[calendar]
+mon		= Mon
+tue		= Tue
+wed		= Wed
+thu		= Thu
+fri		= Fri
+sat		= Sat
+sun		= Sun
+
+[comments]
+masta		= Dear Blog Owner
+text1		= In reply to your post
+text2		= wrote
+orPost		= Original Post
+options		= Options
+look		= Look
+hello		= Hello
+text3		= In reply to your comment the author wrote
+yourComment	= Your comment
+someComment = Someones comment
+comment		= Comment
+authorsaid	= Reply
+text4       = Someone replied
+
+[dayView]
+noJoy		= No data
+noJoyExp	= There are no entries in this day
+
+[monthView]
+year		= Year
+month		= Month
+explained	= Below is a list of all entries made for the selected month. In brackets is the number of comments posted to each entry.
+noJoy		= There are no entries for the selected month
+noJoyExp	= Sorry, but the owner of the blog was lazy during the selected month, thus no entries were posted.
+
+[yearView]
+entriesFor	= Entries for
+explained	= Below are calendar months with links to all the days that have at least one entry associated with them
+noJoy		= No joy
+noJoy2		= Sorry, but the selected year doesn't have a single entry
+
+[entry]
+entComments	= Comments
+addComm		= Add Comment
+name		= Name
+mail		= E-mail
+tags		= Allowed tags: b, i, a
+note		= Your e-mail will not be shown!
+link		= Link
+reply		= Reply
+authorReply	= Reply from author
+youSure		= Are you sure?
+keys		= Words
+disabled    = Disabled
+comDeleted  = Comment Deleted
+
+[keyword]
+keyword		= Keyword
+explained	= Below is a list of all the posts linked to the selected keyword. Indicated in brackets the number of comments posted to each entry.
+
+[keywords]
+keywords1	= All keywords in alphabetical order
+keywords2	= All keywords in order of common usage
+noJoy		= Sorry, but the author did not define a single keyword
+
+[section]
+noJoy		= No entries in section =(
+explained	= This blog doesn't have a single entry, lets pray for the author to enter his login data and post at least one entry for the rest of the world to enjoy.
+
+[main]
+noJoy		= No entires in section
+explained	= This blog doesn't have a single entry, lets pray for the author to enter his login data and post at least one entry for the rest of the world to enjoy.
+
+[index]
+
+[search]
+help		= You may use the "+" and "-" tokens for a more refined search. The search word must be at least two charachter long
+find		= Search
+inSec		= In Section
+everywhere	= Everywhere
+res1		= Search Results
+total		= total
+shown		= Listed are the first
+noJoy		= Unfortunately no entries were found corresponding to your search request
+
+[code]
+keyword		= Tag
+keywords	= Tags
+search		= Search the site
+add		    = Add Entry
+edit		= Edit Entry
+noSubject	= No Subject
+noContent	= No Text
+comReply	= Reply to your Comment!
+comNew		= New Comment!
+link		= link

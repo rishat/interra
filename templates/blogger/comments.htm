@@ -1,0 +1,136 @@
+{if $data.comments}
+<a name="comments"></a>
+{literal}
+<script language="Javascript" type="text/javascript">
+
+	function quickreply(tree) {
+
+        //hide big form
+        document.getElementById('addComment').style.display = 'none';
+        
+        var replyForm = document.getElementById('quickAddComment');
+		replyForm.style.display = '';
+        var currentComment = document.getElementById(tree);
+
+		var replyToField = document.getElementById('quickReplyID');
+		replyToField.value = tree;
+        
+		currentComment.parentNode.insertBefore(replyForm, currentComment.nextSibling);
+        document.getElementById('qcom').focus();
+        return false;
+    }
+
+	function goTo(link){
+		window.location.href = link;
+	}
+</script>
+{/literal}
+
+<div class="commentHeader">{#entComments#} {if $data.intime < ($smarty.const.NOW - 60*60*24*$smarty.const.COMMENT_DAYS)}{#disabled#}{/if}</div>
+<div class="comments">
+
+    {if $data.intime > ($smarty.const.NOW - 60*60*24*$smarty.const.COMMENT_DAYS)}
+	<div class="addCommentHeader">( <a onClick="unhide('addComment');">{#addComm#}</a> )</div>
+
+		<form id="addComment" name="addComment" method="post" action="{$SELF}addcomment/" style="{if !$smarty.session.error}display: none;{/if}" name="edit">
+			<table cellspacing=1 cellpadding=1>
+				<tr><td><nobr>{#name#}:</nobr></td><td width="50%"><input type=text name="sender" maxlength="100" class="myInput" value="{dynamic}{$smarty.cookies.sender}{/dynamic}" /></td><td><nobr>{#mail#}*:</nobr></td><td width="50%"><input type=text name="mail" maxlength="100" class="myInput" value="{dynamic}{$smarty.cookies.senderMail}{/dynamic}" /></td></tr>
+				<tr><td colspan="4"><textarea name="comment" id="mainComment">{dynamic}{$smarty.cookies.tPost}{/dynamic}</textarea></td></tr>
+				<tr><td colspan="4" class="note">{#tags#}<br />*{#note#}</td></tr>
+
+				{dynamic}
+    				{if $smarty.const.ANTISPAM and !$smarty.session.admin}
+    				    <tr><td colspan="2" align="right">{get_spam_challenge}</td><td colspan="2"><input type=text name="antispam" maxlength="6" class="myInput" style="width: 80px; {if $smarty.session.error}background:#f00; color:#fff;{/if}" value="" /></td></tr>
+    				{/if}
+				{/dynamic}
+
+				<tr><td colspan="4" align="center"><input type="submit" name="send" id="send" value="{#send#}" class="button" onClick="document.addComment.send.disabled=true; this.value='{#pleaseWait#}'; document.getElementById('addComment').submit();" /></td></tr>
+			</table>
+			<input type='hidden' name="replyto" value="" id="replyto" />
+		</form>
+
+
+
+		<form id="quickAddComment" method="post" action="{$SELF}addcomment/" style="display: none;" name="quickAddComment">
+		    <table cellspacing="1" cellpadding="1" width="100%">
+		        {dynamic}
+    				{if !$smarty.session.admin}
+				<tr>
+				    <td colspan="4">
+				        <table cellspacing="1" cellpadding="2">
+				            <tr>
+				                <td><nobr>{#name#}:</nobr></td>
+                                <td><input type="text" name="sender" maxlength="20" style="width: 100px;" class="myInput" value="{$smarty.cookies.sender}" /></td>
+                            </tr>
+                            <tr>
+                                <td><nobr>{#mail#}*:</nobr></td>
+                                <td><input type="text" name="mail" maxlength="40" style="width: 100px;" class="myInput" value="{$smarty.cookies.senderMail}" /></td>
+				            </tr>
+				        </table>
+				    </td>
+				    
+				</tr>
+				    {/if}
+				{/dynamic}
+
+				<tr><td colspan="4"><textarea style="border: 1px solid #aaa; width: 100%; height: 130px;" name="comment" id="qcom">{dynamic}{$smarty.cookies.tPost}{/dynamic}</textarea></td></tr>
+
+				{dynamic}
+    				{if $smarty.const.ANTISPAM and !$smarty.session.admin}
+    				    <tr><td colspan="2" align="right">{get_spam_challenge}</td><td colspan="2"><input type=text name="antispam" maxlength="6" class="myInput" style="width: 80px; {if $smarty.session.error}background:#f00; color:#fff;{/if}" value="" /></td></tr>
+    				{/if}
+				{/dynamic}
+
+				<tr><td colspan="4" align="center">
+				    <input type="submit" name="send" id="send" value="{#send#}" class="button" onClick="document.quickAddComment.send.disabled = true; this.value='{#pleaseWait#}'; document.getElementById('quickAddComment').submit();" />
+				</td></tr>
+			</table>
+			
+			
+			<input type='hidden' name="replyto" value="" id="quickReplyID" />
+		</form>
+    {/if}
+    
+	{foreach from=$comments item=comment name=myComments}
+
+		    {math equation="x * y" x=$comment.level y=30 assign="indent"}
+		    {if $indent > $smarty.const.COMMENT_TREE_DEPTH * 30}
+		      {assign var="indent" value="210"}
+		    {/if}
+			<div class="comment{if $comment.admin}Reply{/if}" id="com{$comment.commentid}" name="com{$comment.commentid}" style="margin-left: {$indent}px;">
+				<a name="{$comment.commentid}"></a>
+				
+				{if $comment.deleted}
+				    {#comDeleted#}
+				{else}
+                    <h3>{if $comment.admin}{#authorReply#}{else}{$comment.senderName}{/if}</h3>
+                    <p>{$comment.content}</p>
+                    <p class="datetime">
+                    {$comment.intime|date_format:'%d.%m.%Y // %H:%M'} [ <a href="{$SELF}#{$comment.commentid}">{#link#}</a>
+                    
+                    {if (($data.intime > ($smarty.const.NOW - 60*60*24*$smarty.const.COMMENT_DAYS)) and ($comment.level < $smarty.const.COMMENT_TREE_DEPTH) and ($smarty.const.COMMENT_TREE)) or $smarty.session.admin}
+                     : <a href="{$SELF}" onclick='quickreply("{$comment.commentid}"); return false;' >{#reply#}</a> 
+                    {/if}
+    
+                    {* this is weird, as I have to blend admin options our of sight *}
+                    {* this is the only feasible way to do so -- comment them out   *}
+                    {* in case non-admin follows the link it yields a 404           *}
+                    {dynamic}
+                        {if !$smarty.session.admin}
+                        <!--
+                        {/if}
+                    {/dynamic}
+                            : <a href="{$SELF}dropcomment/{$comment.sortorder}/" onClick="return confirmLink(this,'{#youSure#}');">{#delete#}</a>
+                    {dynamic}
+                        {if !$smarty.session.admin}
+                        -->
+                        {/if}
+                    {/dynamic}
+                    ]</p>
+    
+                    <div id="{$comment.commentid}"></div>
+				{/if}
+			</div>
+	{/foreach}
+</div>
+{/if}

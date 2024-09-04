@@ -1,0 +1,23 @@
+{config_load file="lang`$smarty.const.PLANG`.txt" section="comments"}
+{#masta#},
+
+{#text1#} {$sender} <{$senderMail|default:"unknown"}>, [{$smarty.server.REMOTE_ADDR}] {#text2#}:
+
+-- {#comment#} --
+
+{$comment}
+
+
+
+-- {#orPost#} --
+
+{$entry}
+
+
+
+-- {#options#} --
+
+  * {#look#} -- {$url}
+
+--
+Powered by InTerra Blog Machine V{$VERSION}

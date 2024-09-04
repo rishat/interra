@@ -1,0 +1,32 @@
+{* load lang file *}
+{config_load file="lang`$smarty.const.PLANG`.txt" section="yearView"}
+
+<div class="entry">
+<h2>{#entriesFor#} {$thisYear}</h2>
+<p>{#explained#}</p>
+
+	{* check if there are entrie for more than 1 year *}
+	{if $years|@count gt 1}
+		<div align=center id=yearLinks>
+		{foreach from=$years item=myYear name=yearLoop}
+			{if $myYear == $thisYear}
+				<nobr>[ <b>{$myYear}</b> ]</nobr>
+			{else}
+				<nobr>[ <a href="{$SERVER_ROOT}{$myYear}/">{$myYear}</a> ]</nobr>
+			{/if}	
+		{/foreach}
+		</div>
+	{/if}
+
+
+	{* list the selected year's calendars *}
+	{foreach from=$months item=myMonth}
+		<div align=center>
+			{calendar year=$thisYear month=$myMonth ignoreNav=true}
+		</div>
+	{foreachelse}
+		<h3>{#noJoy#}</h3>
+		<p>{#noJoy2#}</p>
+	{/foreach}
+
+</div>

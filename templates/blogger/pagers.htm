@@ -1,0 +1,30 @@
+<div id="skipLinks">
+	{* process a secion link if any *}
+	{if $section}
+		{assign var=sectionLink value="`$section.name`/"}
+	{/if}
+
+	{* unless no skip is defined, show only go back link *}
+	{if !$smarty.get.skip}
+		<a href="{$SERVER_ROOT}{$sectionLink}skip/{$smarty.const.PER_PAGE}/">{#back#}</a>
+	{else}
+		{* figure out where back and forward lead to *}
+		{math equation="x + y" x=$smarty.get.skip y=$smarty.const.PER_PAGE assign=skipBack}
+		{math equation="x - y" x=$smarty.get.skip y=$smarty.const.PER_PAGE assign=skipForward}
+
+		{* create links *}
+		{if $skipForward lt 1}
+			{assign var=skipForward value="`$SERVER_ROOT``$sectionLink`"}
+		{else}
+			{assign var=skipForward value="`$SERVER_ROOT``$sectionLink`skip/`$skipForward`/"}
+		{/if}
+
+		{* now figure out if to show both links or just a foreward link *}
+		{if $smarty.get.skip + $smarty.const.PER_PAGE lt $pagerTotal}
+			<a href="{$SERVER_ROOT}{$sectionLink}skip/{$skipBack}/">{#back#}</a> | <a href="{$skipForward}">{#forward#}</a>
+		{else}
+			<a href="{$skipForward}">{#forward#}</a>
+		{/if}
+
+	{/if}
+</div>

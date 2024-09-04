@@ -1,0 +1,42 @@
+## error dialogs 
+error1		= Could not connect to the database, please check connection details!
+error2		= Please, fill in all the fields!
+error3		= Could not create configuration file as access to the "common" directory was denied. Please chmod to 776!
+error4		= Could not create directories in the main site directory, please check that it is chmod 776!
+
+## confirmation dialogs
+confirm1	= Installation Successful!
+confirm2	= Your hosting provider has forbidden PHP to chmod files and directories, please manually chmod 777 on the following directories: cache, files, rss and templates_c!
+confirm3	= Additional settings can be found in under /config/ after you enter your admin credentials
+confirm4	= Well
+confirm5	= let's use it!
+
+## databases
+dbaccess	= Database Access
+dbhelp		= InTerra works using a MySQL database, below you have to indicate access details to a MySQL database, if you are unaware of these, please consult your hosting provider.
+dbuser		= Database User
+dbpass		= Database Password
+dbname		= Database Name
+dbhost		= Database Host
+prefix      = Table Prefix
+
+## admin data
+badmin		= Blog Admin
+badminhelp	= In this section you define the admin access details to your InTerra Blog Machine, it is essential that you pick a good password which cannot be guessed or picked using a dictionary attack. Moreover, please indicate your main e-mail address, as all new comments will be e-mailed to that address.
+login		= Login
+password	= Password
+mail		= E-Mail
+
+## lj
+lj		    = Syndication with Livejournal
+ljhelp		= In case you wish to syndicate your blog with an existing Livejournal.com account, then please define the account details below. If you do not with to use this "feature" simply leave the fields blank.
+noLJ		= Cannot be set, as your host does not have the iconv() PHP library enabled!
+
+## other settings
+settings	= Other Settings
+mbhelp		= All the automatic e-mail communication will be carried out from that e-mail address, it can be a fake address, such that spam bots and autoreplies do not reach you
+rsshelp		= Title and description of your blog. These values will be used when creating your RSS feed, and it's readers will be able to distiguish your feed from other feeds
+mailbot		= Reply-To Mail Bot Address
+rsstitle	= Title of RSS feed
+rssdesc		= Description of RSS feed
+rssdef		= Another blog that feeds the Net using the InTerra Blog Machine

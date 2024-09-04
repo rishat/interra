@@ -1,0 +1,56 @@
+{* load lang file *}
+{config_load file="lang`$smarty.const.PLANG`.txt" section="calendar"}
+
+<table align="center"><tbody><tr>
+<td> <table class="mainTable" border="0" cellpadding="0" cellspacing="1">
+                          <tbody>
+                            <tr>
+
+                    <td class="monthYearText monthYearRow" colspan="7">
+					  {if $calendar.showNav}
+                      <a href="{$SERVER_ROOT}{$calendar.prevMonth}" class="calLink">&laquo;</a>{/if}
+					  <a href="{$SERVER_ROOT}{$calendar.thisMonth}" class="calLink">{$calendar.timeStamp|date_format:'%b. %Y'}</a>
+
+					  {if $calendar.showNav}
+					  <a href="{$SERVER_ROOT}{$calendar.nextMonth}" class="calLink">&raquo;</a>{/if}
+					  </td>
+                            </tr>
+                            <tr class="dayNamesText">
+                              <td class="dayNamesRow" width="24">{#mon#}</td>
+                              <td class="dayNamesRow" width="24">{#tue#}</td>
+                              <td class="dayNamesRow" width="24">{#wed#}</td>
+                              <td class="dayNamesRow" width="24">{#thu#}</td>
+                              <td class="dayNamesRow" width="24">{#fri#}</td>
+                              <td class="dayNamesRow" width="24">{#sat#}</td>
+                              <td class="dayNamesRow" width="24">{#sun#}</td>
+                            </tr>
+                            <tr class="rows">
+
+    {section name=numloop loop=$calendar.days}
+        <td class="{if !$calendar.days[numloop]}s20{else}s2{if $calendar.days[numloop].selected}1{/if}{/if} {if $calendar.days[numloop].today}today{/if}">
+			{if $calendar.days[numloop].selected}
+				<a href="{$SERVER_ROOT}{$calendar.thisMonth}{$calendar.days[numloop].link}/" class="calLink"><b>{$calendar.days[numloop].number}</b></a>
+			{else}
+				{$calendar.days[numloop].number|default:"&nbsp"}
+			{/if}
+		</td>
+
+        {* see if we should go to the next row *}
+        {if not ($smarty.section.numloop.rownum mod 7)}
+                {if not $smarty.section.numloop.last}
+                        </tr><tr class="rows">
+                {/if}
+        {/if}
+
+        {if $smarty.section.numloop.last}
+                {* pad the cells not yet created *}
+                {math equation = "n - a % n" n=7 a=$calendar.days|@count assign="cells"}
+                {if $cells ne 7}
+                {section name=pad loop=$cells}
+                        <td class="s20">&nbsp;</td>
+                {/section}
+                {/if}
+                </tr>
+        {/if}
+    {/section}
+</tbody></table></td></tr></tbody></table>

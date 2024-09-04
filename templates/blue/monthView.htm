@@ -1,0 +1,36 @@
+{* load lang file *}
+{config_load file="lang`$smarty.const.PLANG`.txt" section="monthView"}
+
+<div id=entry>
+<h2>{#year#} {$year}, {#month#} {$month}</h2>
+<p>{#explained#}</p>
+</div>
+<div id=entry>
+{foreach from=$data item=entry name=myData}
+
+	{if $myDay != $entry.intime|date_format:"%d"}
+		{if !$smarty.foreach.myData.first}
+			</ul>
+		{/if}
+
+		{assign var="myDay" value=$entry.intime|date_format:"%d"}
+		{assign var="myDayFull" value=$entry.intime|date_format:"%d, %B"}
+
+		<h3>{$myDayFull}</h3>
+		<ul>
+	{/if}
+
+	<li>
+		<em><small>{$entry.intime|date_format:"%H:%M"}</small></em> <a href="{$entry.url}">{$entry.subject}</a> {if $entry.comments}({$entry.commentcount}){/if}
+	</li>
+	
+	{if $smarty.foreach.myData.last}
+	</ul>
+	{/if}
+
+
+{foreachelse}
+	<h3>{#noJoy#}</h3>
+	<p>{#noJoyExp#}</p>
+{/foreach}
+</div>

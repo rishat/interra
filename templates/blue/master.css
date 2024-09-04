@@ -1,0 +1,653 @@
+body {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 1.3em;
+	color: #000;
+	text-align: center;
+	margin: auto;
+	padding: 0;
+	background: #4a525a;
+	width: 780px;
+	}
+
+
+STRIKE, S { color:#999999 }    
+STRIKE, S A:LINK { color:#999999 }
+STRIKE, S A:VISITED { color:#999999 }
+cite {color:#ff0000;font-style:normal;}
+.cite {color:#ff0000;font-style:normal;}
+.mark {color:#E20000;font-style:normal;}
+.add { font-weight: bold; color:#c00; text-decoration: underline; }
+.del { font-style: italic; color:#c00; text-decoration: line-through; }
+.time{ font-family: Arial, Verdana; color: #cccccc; font-size: 10px;}
+.center{
+	text-align: center;
+}
+.myinput{
+	width:100%;
+}
+.indent {
+	margin-left: 40px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.code {
+  background: #444;
+  border: solid #ddd 1px;
+  font-family: "Courier New";
+  color: black;
+  font-size: 10pt;
+  width: 90%;
+  padding: 5px;
+  width: 100%;
+}
+
+.codeold {
+  background: #444;
+  border: solid #888888 1px;
+  font-family: "Courier New";
+  color: black;
+  font-size: 10pt;
+  width: 100%;
+  height: 400px;
+  overflow: scroll;
+}
+
+.searchtext {
+	 font-size: 10px;
+}
+
+a {
+	text-decoration: none;
+	color: #A1D6A0;
+}
+
+a:hover {
+	color: #C7CFB4;
+}
+
+#container {
+	width: 780px;
+	margin: 20px 0 0 0;
+	padding: 0;
+	text-align: left;
+}
+
+#header {
+	width: 780px;
+	height: 170px;
+	text-align: left;
+	margin-top: 20px;
+	float: left;
+}
+
+dfn {
+	border-bottom: 1px dotted #fff;
+	text-decoration: none;
+	font-style : normal;
+	cursor: question; 
+}
+
+.nav {
+	width: 180px;
+	height: 180px;
+	margin: 0 10px 0 0;
+	float: left;
+	border-right: 1px dotted #fff;
+}
+	
+.nav ul {
+	margin: 0;
+	padding: 0 20px 0 20px ; 
+	list-style-type: none;
+}
+	
+.nav ul li {
+	padding: 5px 0 5px 0;
+	display: block;
+	border-bottom: 1px dotted #fff; 
+	font-size: 8pt;
+	color: #fff;
+	line-height: 1.6em; 
+}
+	
+	/* The li:hover effect only works with Firefox and similar browsers, but looks nice, nevertheless. 
+	IE users will simply not see any changes. */
+
+.nav ul li:hover {
+	background-color: #626a73;
+}
+
+.title {
+	float: left; margin: 0 10px 0 0;
+	width: 300px; height: 180px; border-right: 1px dotted #fff;
+	} 
+	
+#star {
+	float: left;
+	background: url(images/star.jpg) left no-repeat;
+	height: 90px;
+	width: 100px;
+}
+
+#kartinka {
+	float: left;
+	width: 780px;
+	height: 228px; 
+	background: url(images/lake.jpg) top left no-repeat;
+	border: 1px solid #fff;
+	text-align: left;
+	margin-top: 20px;
+}
+
+#left {
+	float: left;
+	width: 300px;
+	margin-top: 20px; 
+	text-align: left;
+	border-right: 1px solid #fff;
+}
+
+h5.left {
+	background: url(images/circle.gif) left no-repeat;
+	height: 22px;
+	padding: 7px 0 0 22px;
+	font-size: 10pt;
+	color: #fff;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.block {
+	width: 300px;
+	padding-bottom: 10px;
+}
+
+.block ul {
+	margin: 0;
+	padding: 0 10px 0 10px; 
+	list-style-type: none;
+}
+	
+.block ul li {
+	padding: 5px 0 5px 0;
+	display: block;
+	border-bottom: 1px dotted #fff; 
+	font-size: 8pt;
+	color: #fff;
+	line-height: 1.6em; 
+}
+	
+.block ul li:hover {
+	background-color: #626a73;
+}
+	
+#right {
+	float: right;
+	width: 450px; 
+	text-align: justify; 
+}
+	
+.content {
+	width: 450px;
+	padding-bottom: 20px;
+	font-size: 8pt;
+	line-height: 1.4em;
+	color: #fff; 
+}
+	
+.entryfooter {
+	width: 450px;
+	padding-bottom: 10px;
+	text-align: right;
+}
+
+p {
+	margin: 1em 0 1em;
+	padding: 0;
+}
+
+h2 {
+	font-size: 13pt;
+	color: #fff;
+	font-weight: normal;
+	border-bottom: 1px solid #fff;
+	line-height: 1.6em;
+	text-align: left;
+}
+
+h4 {
+	float: left; 
+	padding: 20px 0 0 0;
+	color: #fff;
+	font-weight: normal;
+	font-size: 13pt;
+	text-transform: uppercase; 
+	}
+
+h1 {
+	padding: 0px 0 0 0;
+	color: #fff;
+	font-weight: normal;
+	font-size: 13pt;
+	text-transform: uppercase;
+}
+
+blockquote {
+	font-size: 100%;
+	color: #ccc;
+	padding-left: 10px;
+}
+
+abbr, acronymn, .popup {
+	font-style: normal;
+	border-bottom: 1px dotted;
+}
+
+em {
+	font-style: italic;
+}
+
+strong {
+	font-weight: bold;
+}
+
+strike {
+	text-decoration: line-through;
+}
+
+.comentbox {
+	border: 1px solid #999;
+	width: 100%;
+	margin: 4px;
+	background: #575E65;
+	-moz-border-radius: 1em;
+}
+
+/* LOGIN FORM ---------------------------------- */
+
+#loginForm form {
+	margin: 0;
+	padding: 0;
+}
+
+.loginInput {
+	width: 100px;
+	margin: 0;
+	font-size: 90%;
+}
+
+#loginForm input image{
+	width: 83px;
+	height: 19px;
+	margin: 0;
+}
+
+/* END LOGIN FORM ------------------------------ */
+
+
+/* ADD FORM ---------------------------------- */
+#addForm input{
+	width: 100%;
+	margin: 0;
+	padding: 1px 0px;
+	font-size: 90%;
+	font-family: verdana, sans-serif;
+}
+
+html>body #addForm input{
+	width: 100%;
+	height: 12px;
+	margin: 2px 0 0 0;
+}
+
+#addForm textarea{
+	width: 100%;
+	height: 300px;
+	margin: 0 0 0 0;
+	font-family: verdana, sans-serif;
+	font-size: 90%;
+}
+
+html>body #addForm textarea{
+	width: 100%;
+	height: 300px;
+	margin: 2px 0 0 0;
+}
+
+#addForm select{
+	margin: 0 0 0 0;
+	font-family: verdana, sans-serif;
+	font-size: 90%;
+}
+
+html>body #addForm select{
+	margin: 2px 0 0 0;
+}
+
+#addForm .myFile{
+	height: 17px;
+}
+
+/* Start Field Sets */
+
+#addForm fieldset{
+	margin: 15px 3px 5px 3px; 
+	padding: 15px;
+	color: #fff;
+	border: solid 1px #fff;
+	background: #555;
+}
+
+#addForm fieldset legend{
+	padding: 2px 15px;
+	color: #aa0000;
+	font-weight: bold;
+	border: solid 1px #fff;
+	background: #ccc;
+}
+
+#addForm fieldset h3{
+	border: none;
+}
+
+/* End Field Sets ----------------------------------*/
+
+
+#button{
+	margin: 20px 0 0 0;
+}
+
+#newSection, #replicate{
+	margin: 0 20px 0 20px;
+}
+
+#newSection h5, #replicate h5{
+	font-size: 10px;
+	margin: 0;
+	padding: 0;
+}
+
+#content .entry {
+	margin-bottom: 14px;
+	}
+
+.entryTitle {
+	padding: 0 0 0 0px;
+}
+
+#content ul {
+	list-style: none;
+	margin: 1em 0 1em 0;
+	padding-left: 24px;
+	}
+
+#content ul li {
+	padding: 0 0 4px 17px;
+	line-height: 1.3em;
+	background: url(images/bullet_rounded.gif) no-repeat 0 4px;
+	}
+
+p.posted {
+	color: #fff;
+	font-size: 100%;
+	padding: 0 0 10px 0;
+	margin: 0 0 0 0px;
+	text-align: left;
+	width: 100%;
+	}
+	
+p.catdatetime {
+	color: #fff;
+	font-size: 90%;
+	padding: 0 0 0px 0;
+	margin: 0 0 0 0px;
+	text-align: right;
+	width: 100%;
+	text-transform: uppercase;
+	}
+
+p.posted img {
+	vertical-align: middle;
+	}
+
+#featured dd, #featured dt {
+	margin: 0;
+	}
+
+hr {visibility:hidden; display:none;}
+
+.center {
+	text-align: center;
+	}
+
+.hide {
+	display: none;
+	}
+
+
+/* Calendar ------------------------------------------------------------------------- */
+/* Main Table Setup Incluidng Date Number Fonts, Size and Color */
+
+#calendar {
+	margin: 0 0 15px 0;
+}
+
+.mainTable {
+	width: 175px;
+ }
+
+.navTable {
+	width: 175px;
+ }
+
+.navTableText {
+    font-family: Geneva, Verdana, Arial, sans-serif; 
+	font-size: 9px; 
+	font-weight: Normal;
+	text-decoration: none;
+	color: #000;
+	}
+
+/* Month and Year Row Setup */
+.monthYearRow {
+    line-height: 16pt;
+	text-align: center;
+	vertical-align: middle;
+	}
+
+/* Month and Year Text Setup */
+.monthYearText {
+	font-family: Geneva, Verdana, Arial, sans-serif;
+	font-size: 12px;
+	font-weight: Bold;
+	color: #000;
+	}
+
+/* Day Names Row Setup */
+.dayNamesRow {
+    line-height: 11pt;
+	text-align: center;
+	vertical-align: middle;
+	}
+
+/* Day Name Setup */
+.dayNamesText {
+    font-family: Geneva, Verdana, Arial, sans-serif; 
+	font-size: 10px; 
+	font-weight: Bold; 
+	color: #000;
+	background-image: url("images/dayBg.gif");
+	}
+
+/* Alignments, Font Face, Size and Color for Date Numbers and Row Height */
+.rows {
+	font-family: Geneva, Verdana, Arial, sans-serif;
+	font-size: 10px;
+	color: #000;
+    line-height: 15pt;
+	text-align: center;
+	vertical-align: middle;
+	}
+
+/* Color of Today's Date */
+.today {
+	font-weight: bold;
+	border: 1px #ccc solid;
+    }
+
+/* Normal Cell Background (date number with no event markings) */
+.s2 {
+
+	}
+/* Empty Cell Background (empty cells with no date numbers) */
+.s20 {
+
+	}
+/* Mark Start Cell Background (usually a slashed graphic to show availability or solid for events) */
+.s21 {
+
+	}
+
+a.calEvent{
+	text-decoration: none;
+	color: #000;
+	font-weight: Bold; 
+}
+
+a.calLink {
+	text-decoration: none;
+}
+
+
+/*- Comments ------------------------------------------------------------------------------ */
+.comment {
+	margin: 0 0 15px 0;
+}
+
+.commentReply{
+	margin: 0 0 20px 45px;
+}
+
+.commentReply h3{
+	padding: 2px 7px 4px 27px;
+	margin: 0px;
+	line-height: 17px;
+	font-size: 12px;
+	color: #fff;
+}
+
+.comment h3{
+	padding: 4px 7px 4px 10px;
+	margin: 0px;
+	line-height: 17px;
+	font-size: 12px;
+	text-decoration: none;
+	}
+
+.comment p, .commentReply p{
+	margin: 10px;
+	font-size: 11px;
+	line-height: 1.1em;
+}
+
+.comment .datetime, .commentReply .datetime{
+	font-size: 10px;
+	color: #aaa;
+	text-align: right;
+}
+
+.addCommentHeader{
+	text-align: center;
+	font-weight: bold;
+	margin: 0 0 15px 0;
+	cursor: pointer; 
+	cursor: hand;
+}
+
+.addCommentHeader a{
+	text-decoration: underline;
+	color: #A1D6A0;
+}
+
+.commentHeader{
+	text-align: center;
+	margin: 15px 0 10px 0;
+	padding: 5px 0 5px 0;
+	font-size: 140%;
+	border-top: 1px solid #fff;
+}
+
+#addComment{
+	font-size: 90%;
+}
+
+#addComment .myInput{
+	width: 90%;
+	margin: 0 0 0 5px;
+	font-family: Arial, verdana, sans-serif;
+	font-size: 100%;
+}
+
+#addComment textarea{
+	height: 200px;
+	width: 99%;
+	font-family: Arial, verdana, sans-serif;
+	font-size: 100%;
+}
+
+#quickAddComment{
+	margin: 0;
+	width: 99%;
+}
+
+.quickReply{
+	height: 100px;
+	width: 99%;
+	font-family: Arial, verdana, sans-serif;
+	font-size: 90%;
+}
+
+#addComment .note{
+	font-size: 90%;
+	color: #fff;
+	line-height: 1em;
+	text-align: center;
+}
+
+#addComment .button, .button{
+	font-size: 90%;
+}
+
+/*- end comments ------------------------------------------------- */
+
+.kdatetime{
+	font-size: 80%;
+	color: #aaa;
+	font-style: italic;
+}
+
+#yearLinks{
+	padding: 0 0 10px 0;
+	font-size: 120%;
+}
+
+#skipLinks{
+	width: 150px;
+	padding: 10px 0 10px 0;
+	text-align: left;
+	font-weight: bold;
+}
+
+.searchInput{
+	width: 100%;
+}
+
+.inTerraCut{
+	font-size: 100%;
+}
+
+.inTerraCut a{
+	font-weight: bold;
+}

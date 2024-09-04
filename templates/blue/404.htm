@@ -1,0 +1,14 @@
+{* load lang file *}
+{config_load file="lang`$smarty.const.PLANG`.txt" section="404"}
+
+<div class="entry"> 
+      <h2>{#pageTitle#}</h2>
+      <p>{#pageHelp#}</p>
+
+	  {entries var="myEntries" items=3 sortby="random"}
+	  <ul>
+	  {foreach from=$myEntries item=entry}
+		<li><a href="{$entry.url}">{$entry.subject}</a> {if $entry.comments}({$entry.commentcount}){/if} <span class="kdatetime">{$entry.intime|date_format:'%d.%m.%Y // %H:%M'}</span></li>
+	  {/foreach}
+	  </ul>
+</div>

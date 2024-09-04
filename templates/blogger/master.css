@@ -1,0 +1,724 @@
+body {
+  font-size: 12px;
+  background:#135;
+  margin:0;
+  padding:40px 20px;
+  font-family: "Trebuchet MS",Trebuchet,Verdana,Sans-Serif;
+  text-align: center;
+  color: #ccc;
+  line-height: 1.3em;
+  }
+
+STRIKE, S { color:#999999 }    
+STRIKE, S A:LINK { color:#999999 }
+STRIKE, S A:VISITED { color:#999999 }
+cite {color:#888800;font-style:normal;}
+.cite {color:#888800;font-style:normal;}
+.mark {color:#E20000;font-style:normal;}
+.add { font-weight: bold; color:#c00; text-decoration: underline; }
+.del { font-style: italic; color:#c00; text-decoration: line-through; }
+.time{ font-family: Tahoma, Arial, Verdana; color: #cccccc; font-size: 9px;}
+.center{
+	text-align: center;
+}
+.myinput{
+	width:100%;
+}
+.indent {
+	margin-left: 40px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+p.catdatetime {
+	color: #fff;
+	font-size: 90%;
+	padding: 0 0 0px 0;
+	margin: 0 0 0 0px;
+	text-align: right;
+	width: 100%;
+	text-transform: uppercase;
+	}
+
+.code {
+  background: #eee;
+  border: solid #ddd 1px;
+  font-family: "Courier New";
+  color: black;
+  font-size: 10pt;
+  width: 90%;
+  padding: 5px;
+  width: 100%;
+}
+
+#stats {
+	color: #cccccc;
+}
+
+.codeold {
+  background: #FFFFFF;
+  border: solid #888888 2px;
+  font-family: "Courier New";
+  color: black;
+  font-size: 10pt;
+  width: 100%;
+  height: 400px;
+  overflow: scroll;
+}
+
+.searchtext {
+	 font-size: 10px;
+}
+
+a {
+	color:#9bd;
+	text-decoration:none;
+	}
+
+a:hover{
+  color:#ad9;
+  text-decoration:underline;
+}
+
+p {
+	margin: 1em 0 1em;
+	padding: 0;
+	}
+
+h1 {
+	font-family: "lucida grande", verdana, sans-serif;
+	font-size: 115%;
+	font-weight: bold;
+	color: #c63;
+	padding: 0;
+	margin: 0;
+	}
+
+h2 {
+	font-family: "Trebuchet MS",Trebuchet,Arial,Verdana,Sans-serif;
+	font-size: 140%;
+	color: #fc6;
+	padding: 0;
+	margin: 0 0 1em 0;
+	}
+
+h2 a:link, h2 a:visited {
+	text-decoration: none;
+	color: #c63;
+	}
+
+h2 a:hover {
+	color: #930;
+	}
+	
+h3 {
+	font-size: 100%;
+	font-weight: bold;
+	color: #fc6;
+	padding: 0 0 2px 0;
+	margin: 1.2em 0 -.2em 0;
+	border-bottom: 1px solid #369;
+	}
+
+h1 span, h2 span, h3 span {
+	color: #eee;
+	}
+
+blockquote {
+	font-size: 88%;
+	color: #777;
+	padding-left: 23px;
+}
+
+abbr, acronymn, .popup {
+	font-style: normal;
+	border-bottom: 1px dotted;
+	}
+
+em {
+	font-style: italic;
+	}
+
+strong {
+	font-weight: bold;
+	}
+
+strike {
+	text-decoration: line-through;
+	}
+
+
+#wrap {
+	margin: 0 auto;
+	width: 750px;
+	padding: 0px 0px 0px 0px;
+	text-align: left;
+	voice-family: "\"}\""; 
+  	voice-family: inherit;
+	border: 0px solid #ddd;
+	background: #135;
+	}
+
+html>body #wrap {
+	padding: 0px;
+	} 
+
+/* THIS IS THE THING AT THE TOP ----------------------------------*/
+#header {
+  width:750px;
+  margin:0 auto 10px;
+  border:1px solid #468;
+  }
+
+#logo {
+  margin: 5px 5px 0;
+  padding: 20px 20px .25em;
+  border: 1px solid #357;
+  border-width: 1px 1px 0;
+  font-size: 200%;
+  line-height: 1.2em;
+  color: #eee;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-weight: bold;
+  }
+
+#description {
+  margin: 0 5px 5px;
+  padding: 0 20px 20px;
+  border: 1px solid #357;
+  border-width: 0 1px 1px;
+  font: 78%/1.4em "Trebuchet MS",Trebuchet,Arial,Verdana,Sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  color: #79b;
+  }
+/* END LOGO -------------------------------------------------------*/
+
+#breadcrumbs {
+	float: left;
+	width: 800px;
+	margin: 0;
+	padding: 0 20px;
+	font-size: 90%;
+}
+
+ 
+/* LOGIN FORM ---------------------------------- */
+
+#loginForm form {
+	margin: 0;
+	padding: 0;
+	color: #ccc;
+}
+
+.loginInput {
+	width: 100px;
+	margin: 0;
+	font-size: 90%;
+	background: #003366;
+	border: 1px solid #444;
+	color: #fff;
+}
+
+#loginForm input image{
+	width: 83px;
+	height: 19px;
+	margin: 0;
+}
+
+/* END LOGIN FORM ------------------------------ */
+
+
+/* ADD FORM ---------------------------------- */
+#addForm input{
+	width: 100%;
+	margin: 0;
+	padding: 1px 0px;
+	font-size: 100%;
+	font-family: "Trebuchet MS", Trebuchet, Verdana, Sans-Serif;
+	background: #003366;
+	border: 1px solid #eee;
+	color: #fff;
+}
+
+html>body #addForm input{
+	width: 100%;
+	margin: 2px 0 0 0;
+}
+
+#addForm textarea{
+	width: 100%;
+	height: 300px;
+	margin: 0 0 0 0;
+	font-family: "Trebuchet MS", Trebuchet, Verdana, Sans-Serif;
+	font-size: 100%;
+	background: #003366;
+	border: 1px solid #eee;
+	color: #fff;
+}
+
+html>body #addForm textarea{
+	width: 100%;
+	height: 300px;
+	margin: 2px 0 0 0;
+}
+
+#addForm select{
+	margin: 0 0 0 0;
+	font-family: verdana, sans-serif;
+	font-size: 100%;
+}
+
+html>body #addForm select{
+	margin: 2px 0 0 0;
+}
+
+#addForm .myFile{
+	height: 20px;
+}
+
+/* Start Field Sets */
+
+#addForm fieldset{
+	margin: 15px 3px 5px 3px; 
+	padding: 15px;
+	color: #aa0000;
+	border: solid 1px #ccc;
+	background: #036;
+}
+
+#addForm fieldset legend{
+	padding: 2px 15px;
+	color: #ccc;
+	font-weight: bold;
+	border: solid 1px #ccc;
+	background: #369;
+}
+
+#addForm fieldset h3{
+	border: none;
+}
+
+/* End Field Sets ----------------------------------*/
+
+
+#button{
+	margin: 20px 0 0 0;
+}
+
+#newSection, #replicate{
+	margin: 0 20px 0 20px;
+}
+
+#newSection h5, #replicate h5{
+	font-size: 10px;
+	margin: 0;
+	padding: 0;
+}
+
+#content {
+	float: left;
+	width: 540px;
+	margin: 28px 0 0 0;
+	padding: 0 0px;
+	text-align: justify;
+	clear: left;
+	}
+
+#content .entry {
+	margin-bottom: 14px;
+	}
+
+.entryTitle {
+	padding: 0 0 0 0px;
+}
+
+#content ul {
+	list-style: none;
+	margin: 1em 0 1em 0;
+	padding-left: 24px;
+	}
+
+#content ul li {
+	padding: 0 0 4px 17px;
+	line-height: 1.3em;
+	background: url(images/bullet_rounded.gif) no-repeat 0 4px;
+	}
+
+p.posted {
+	color: #999;
+	font-size: 88%;
+	padding: 0 0 0px 0;
+	margin: 0 0 0 0px;
+	text-align: right;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #369;
+	width: 540px;
+	}
+
+p.posted img {
+	vertical-align: middle;
+	}
+
+#sidebar {
+	font-size: 100%;
+	margin: 0 0 0 559px;
+	color: #eee;
+	width: 175px;
+
+	}
+
+html>body #sidebar{
+	padding: 42px 0px 0 0px;
+}
+	
+#sidebar a{
+	color: #ccc;
+}
+
+#sidebar a:hover{
+	color: #eee;
+}
+
+#sidebar h3 {
+	font-family: "Trebuchet MS", Trebuchet, Arial, Verdana, Sans-serif;
+	font-weight: bold;
+	font-size: 100%;
+	padding: 0 0 2px 0px;
+	margin: 0 0 5px 0;
+	color: #fc6;
+	border-bottom: 1px dotted #ccc;
+	}
+
+#sidebar h4 {
+	font-size: 92%;
+	font-weight: normal;
+	margin: 0;
+	color: #fc9;
+	}
+	
+#sidebar p {
+	margin-top: 4px;
+	margin-bottom: 20px;
+	}
+
+#sidebar ul, .noBullet, #sidebar dl {
+	margin: 0px 0 10px 0;
+	padding: 0;
+	list-style: none;
+	}
+
+#sidebar li {
+	margin: 0;
+	padding: 0 0 2px 0;
+
+	}
+
+#sidebar #quickbits li, #sidebar #poleznosti li, #sidebar .bubble li, #sidebar #adminOptions li {
+	margin: 0;
+	padding: 0 0 0 13px;
+	background: url(images/bullet_rounded.gif) no-repeat 0 4px;
+	margin-bottom: .6em;
+	}
+
+#sidebar #quickbits li.last {
+	background: none;
+	}
+	
+#featured dd, #featured dt {
+	margin: 0;
+	}
+
+#sidebar img {
+	vertical-align: middle;
+	}
+
+#footer {
+	position: relative;
+	clear: both;
+	margin: 0;
+	padding: 8px 25px;
+	font-size: 80%;
+	color: #9bd;
+	text-align: center;
+	width: 710px;
+	text-transform:uppercase;
+	}
+
+#footer a{
+	color: #9bd;
+	text-decoration: none;
+}
+
+#footer a:hover{
+	color: #9db;
+	text-decoration: underline;
+}
+
+hr {
+	border-top: 1px dashed #ccc;
+	color: #fff;
+	background-color: #fff;
+	height: 1px;
+	}	
+
+.center {
+	text-align: center;
+	}
+
+.hide {
+	display: none;
+	}
+
+
+/* Calendar ------------------------------------------------------------------------- */
+/* Main Table Setup Incluidng Date Number Fonts, Size and Color */
+
+#calendar {
+	margin: 0 0 15px 0;
+}
+
+#calendar a{
+	color: #fc9;
+	text-decoration: none;
+}
+
+#calendar a:hover{
+	color: #ccc;
+	text-decoration: underline;
+}
+
+.mainTable {
+	border: 0px solid #eee;
+	width: 175px;
+ }
+
+.navTable {
+	border: 0px solid #FFFFFF;
+	width: 175px;
+ }
+
+.navTableText {
+    font-family: Geneva, Verdana, Arial, sans-serif; 
+	font-size: 9px; 
+	font-weight: Normal;
+	text-decoration: none;
+	color: #000;
+	}
+
+/* Month and Year Row Setup */
+.monthYearRow {
+    line-height: 16pt;
+	text-align: center;
+	vertical-align: middle;
+	
+	}
+
+/* Month and Year Text Setup */
+.monthYearText {
+	font-family: Geneva, Verdana, Arial, sans-serif;
+	font-size: 12px;
+	font-weight: Bold;
+	color: #000;
+	}
+
+/* Day Names Row Setup */
+.dayNamesRow {
+    line-height: 11pt;
+	text-align: center;
+	vertical-align: middle;
+	}
+
+/* Day Name Setup */
+.dayNamesText {
+    font-family: Geneva, Verdana, Arial, sans-serif; 
+	font-size: 10px; 
+	font-weight: Bold; 
+	color: #ccc;
+	}
+
+/* Alignments, Font Face, Size and Color for Date Numbers and Row Height */
+.rows {
+	font-family: Geneva, Verdana, Arial, sans-serif;
+	font-size: 10px;
+    line-height: 15pt;
+	text-align: center;
+	vertical-align: middle;
+	}
+
+/* Color of Today's Date */
+.today {
+	font-weight: bold;
+    }
+
+/* Normal Cell Background (date number with no event markings) */
+.s2 {
+color: #ccc;
+	}
+/* Empty Cell Background (empty cells with no date numbers) */
+.s20 {
+color: #ccc;
+	}
+/* Mark Start Cell Background (usually a slashed graphic to show availability or solid for events) */
+.s21 {
+
+	}
+
+a.calEvent{
+	text-decoration: none;
+	color: #000;
+	font-weight: Bold; 
+}
+
+a.calLink {
+	text-decoration: none;
+}
+
+
+/*- Comments ------------------------------------------------------------------------------ */
+.comment {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #369;
+	margin: 0 0 15px 0;
+}
+
+.commentReply{
+	margin: 0 0 20px 45px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #369;
+}
+
+.commentReply h3{
+	padding: 2px 7px 4px 27px;
+	margin: 0px;
+	line-height: 17px;
+	font-size: 12px;
+	color: #ccc;
+	background: url(images/reply.gif) no-repeat 0 4px;
+}
+
+.comment h3{
+	padding: 2px 7px 4px 27px;
+	margin: 0px;
+	line-height: 17px;
+	font-size: 12px;
+	background: url(images/article.gif) no-repeat 0 4px;
+	}
+
+.comment p, .commentReply p{
+	margin: 10px;
+	font-size: 11px;
+	line-height: 1.1em;
+}
+
+.comment .datetime, .commentReply .datetime{
+	font-size: 10px;
+	color: #ccc;
+	text-align: right;
+}
+
+.addCommentHeader{
+	text-align: center;
+	font-weight: bold;
+	margin: 0 0 15px 0;
+	cursor: pointer; cursor: hand;
+}
+
+.addCommentHeader a{
+	text-decoration: underline;
+	color: #5b80b2;
+}
+
+.commentHeader{
+	text-align: center;
+	margin: 15px 0 10px 0;
+	padding: 5px 0 5px 0;
+	font-size: 140%;
+	border: 1px solid #369;
+}
+
+#addComment{
+	font-size: 90%;
+}
+
+#addComment .myInput, #quickAddComment .myInput{
+	width: 90%;
+	margin: 0 0 0 5px;
+	font-family: "Trebuchet MS",Trebuchet,Verdana,Sans-Serif;
+	font-size: 110%;
+	background: #369;
+	border: 1px solid #ccc;
+	color: #eee;
+}
+
+#addComment textarea, #quickAddComment textarea{
+	height: 200px;
+	width: 99%;
+	font-family: "Trebuchet MS", Trebuchet, Verdana, Sans-Serif;
+	font-size: 110%;
+	border: 1px solid #ccc;
+	background: #369;
+	color: #fff;
+}
+
+#quickAddComment{
+	margin: 0;
+	width: 100%;
+}
+
+.quickReply{
+	height: 100px;
+	width: 100%;
+	font-family: "Trebuchet MS", Trebuchet, Verdana, Sans-Serif;
+	font-size: 100%;
+}
+
+#addComment .note{
+	font-size: 100%;
+	color: #ccc;
+	line-height: 1em;
+	text-align: center;
+}
+
+#addComment .button, .button{
+	font-size: 90%;
+}
+
+/*- end comments ------------------------------------------------- */
+
+.kdatetime{
+	font-size: 80%;
+	color: #aaa;
+	font-style: italic;
+}
+
+#yearLinks{
+	padding: 0 0 10px 0;
+	font-size: 120%;
+}
+
+#skipLinks{
+	width: 150px;
+	padding: 10px 0 10px 0;
+	text-align: center;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #369;
+	font-weight: bold;
+}
+
+.searchInput{
+	width: 100%;
+}
+
+.inTerraCut{
+	font-size: 100%;
+}
+
+.inTerraCut a{
+	font-weight: bold;
+}
